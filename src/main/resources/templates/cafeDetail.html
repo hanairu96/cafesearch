@@ -87,60 +87,102 @@
     }
   </style>
 
-  <div class="result-list" th:unless="${cafeList.isEmpty}" th:each="cafe : ${cafeList}">
-    <div class="results">
-      <div class="img" th:style="'background-image: url('+@{${cafe.image}}+');'"></div>
-      <div class="info">
-        <p th:text="${cafe.cafeName}"></p>
-        <p th:text="'☆'+${cafe.star}"></p>
-        <p th:text="${cafe.address}"></p>
-      </div>
-    </div>
+  <div id="cafe-image">
+
   </div>
-  <div class="result-list" th:if="${cafeList.isEmpty}">
-    <div class="results">
-      <div id="no-result" th:text="'조회된 결과가 없습니다.'"></div>
+  <div id="cafe-info">
+    <p id="cafe-name">카페명</p>
+    <p id="cafe-star">별점</p>
+    <p id="cafe-address">주소</p>
+  </div>
+  <hr>
+  <div id="map">
+    <p>지도</p>
+  </div>
+  <hr>
+  <div class="review-div">
+    <div id="reivew-top">
+      <p id="title-text">리뷰(2)</p>
+      <img id="review-post"><p>작성하기</p>
+    </div>
+    <div class="review-list">
+      <div class="review">
+        <div>
+          <div id="profile-img"></div>
+          <p id="member-id">아이디</p>
+        </div>
+        <div>
+          <div id="review-text">
+            <p id="review-title">제목</p>
+            <p id="review-content">내용</p>
+          </div>
+          <div id="review-rest">
+            <div id="review-star">☆5</div>
+            <div id="review-date">23.06.05</div>
+          </div>
+        </div>
+      </div>
+      <hr>
     </div>
   </div>
   <style>
-    .result-list > * {
+    #cafe-image{
+      border: 1px solid black;
+      height: 400px;
+      width: 600px;
       margin: 0 auto;
-      font-family: Gowun Dodum;
+      margin-top: 30px;
     }
-    .results {
-      margin-top: 20px;
-      height: 150px;
-      width: 700px;
-      border: 1px solid gray;
+    #cafe-info{
+      height: 100px;
+      width: 600px;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+
+    #map{
+      width: 600px;
+      margin: 0 auto;
+    }
+    .review-div{
+      width: 1100px;
+      margin: 0 auto;
+    }
+    #reivew-top{
       display: flex;
     }
-    .img {
-      background-size: cover;
-      margin: 25px;
-      height: 100px;
-      width: 120px;
-      border: 1px solid black;
-      /* background-image: url(image/icon-coffee.png); */
-    }
-    .info {
-      /* border: 1px solid black; */
-      margin: 0px;
-      padding: 20px;
-    }
-    .info > p {
-      margin: 5px;
-    }
-    .info > p:first-child {
-      font-weight: bolder;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .info > p:nth-child(2) {
-      font-size: 20px;
-    }
-    #no-result{
+    .review{
+      display: flex;
+      width: 1000px;
       margin: 0 auto;
-      padding-top: 65px;
+      margin-top: 30px;
+    }
+    #profile-img{
+      border: 1px solid black;
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+      margin: 30px;
+    }
+    #review-text{
+      border: 1px solid black;
+      height: 200px;
+      width: 700px;
+      padding: 15px;
+    }
+    #review-title{
+      font-weight: bold;
+    }
+    #review-rest{
+      display: flex;
+      margin-top: 10px;
+    }
+    #review-star{
+      font-weight: bold;
+      font-size: 30px;
+    }
+    #review-date{
+      margin-left: 640px;
     }
   </style>
 </body>
@@ -150,13 +192,8 @@
     location.assign("/cafe/");
   });
 
-  document.querySelector("#search-box>img").addEventListener("click", e =>{
+  document.querySelector("#search-box>img").addEventListener("click", e=>{
     document.querySelector(".search-form").submit();
-  });
-
-  document.querySelector(".info > p:first-child").addEventListener("click", e =>{
-    //제목 이용해 카페 디테일로 이동하기
-    //location.assign("/cafe/cafeDetail");
   });
 </script>
 </html>
