@@ -17,7 +17,7 @@
         <img id="login" title="로그인" src="/image/login01.png" />
     </div>
     <div class="search">
-        <form action="/cafe/searchResult">
+        <form class="search-form" action="/cafe/searchResult">
             <div id="search-box">
                 <input id="search-input" type="text" name="keyword" placeholder="카페 이름 검색" />
                 <img src="/image/search01.png"/>
@@ -151,5 +151,15 @@
         text-align: center;
     }
 </style>
+<script>
+    let mainName = document.getElementById("name");
+    mainName.addEventListener("click", e =>{
+        location.assign("/cafe/");
+    });
+
+    document.querySelector("#search-box>img").addEventListener("click", e=>{
+        document.querySelector(".search-form").submit();
+    });
+</script>
 </body>
 </html>
