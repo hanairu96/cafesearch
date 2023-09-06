@@ -87,13 +87,12 @@
     }
   </style>
 
-  <div id="cafe-image">
+  <img id="cafe-image" th:src="${detailCafe.image}">
 
-  </div>
-  <div id="cafe-info">
-    <p id="cafe-name">카페명</p>
-    <p id="cafe-star">별점</p>
-    <p id="cafe-address">주소</p>
+  <div id="cafe-info" th:object="${detailCafe}">
+    <p id="cafe-name" th:text="*{cafeName}"></p>
+    <p id="cafe-star" th:text="'☆'+*{star}"></p>
+    <p id="cafe-address" th:text="*{address}"></p>
   </div>
   <hr>
   <div id="map">
@@ -126,11 +125,15 @@
     </div>
   </div>
   <style>
+    body{
+      font-family: "Gowun Dodum";
+    }
     #cafe-image{
       border: 1px solid black;
       height: 400px;
       width: 600px;
       margin: 0 auto;
+      display: block;
       margin-top: 30px;
     }
     #cafe-info{
@@ -138,6 +141,11 @@
       width: 600px;
       margin: 0 auto;
       margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    #cafe-name{
+      font-weight: bold;
+      font-size: 20px;
     }
 
     #map{
@@ -195,5 +203,8 @@
   document.querySelector("#search-box>img").addEventListener("click", e=>{
     document.querySelector(".search-form").submit();
   });
+
+  //history.replaceState({}, null, location.pathname);
+
 </script>
 </html>

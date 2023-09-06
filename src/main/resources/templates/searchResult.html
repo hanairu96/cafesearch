@@ -91,7 +91,7 @@
     <div class="results">
       <div class="img" th:style="'background-image: url('+@{${cafe.image}}+');'"></div>
       <div class="info">
-        <p th:text="${cafe.cafeName}"></p>
+        <a th:text="${cafe.cafeName}" th:href="'/cafe/cafeDetail?name='+${cafe.cafeName}+'&image='+${cafe.image}+'&address='+${cafe.address}+'&star='+${cafe.star}"></a>
         <p th:text="'☆'+${cafe.star}"></p>
         <p th:text="${cafe.address}"></p>
       </div>
@@ -127,15 +127,14 @@
       margin: 0px;
       padding: 20px;
     }
-    .info > p {
+    .info > * {
       margin: 5px;
     }
-    .info > p:first-child {
+    .info > a {
       font-weight: bolder;
       font-size: 20px;
-      cursor: pointer;
     }
-    .info > p:nth-child(2) {
+    .info > p:first-child {
       font-size: 20px;
     }
     #no-result{
@@ -152,11 +151,6 @@
 
   document.querySelector("#search-box>img").addEventListener("click", e =>{
     document.querySelector(".search-form").submit();
-  });
-
-  document.querySelector(".info > p:first-child").addEventListener("click", e =>{
-    //제목 이용해 카페 디테일로 이동하기
-    //location.assign("/cafe/cafeDetail");
   });
 </script>
 </html>
