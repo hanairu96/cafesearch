@@ -88,14 +88,20 @@
   </style>
 
   <div class="result-list" th:unless="${cafeList.isEmpty}" th:each="cafe : ${cafeList}">
-    <div class="results">
-      <div class="img" th:style="'background-image: url('+@{${cafe.image}}+');'"></div>
+    <form class="results" action="/cafe/cafeDetail" method="post">
+      <input class="img select" th:style="'background-image: url('+@{${cafe.image}}+');'"
+           onclick="detailPage(this.form)">
       <div class="info">
-        <a th:text="${cafe.cafeName}" th:href="'/cafe/cafeDetail?name='+${cafe.cafeName}+'&image='+${cafe.image}+'&address='+${cafe.address}+'&star='+${cafe.star}"></a>
+        <input class="select" th:value="${cafe.cafeName}"
+           onclick="detailPage(this.form)">
         <p th:text="'☆'+${cafe.star}"></p>
         <p th:text="${cafe.address}"></p>
       </div>
-    </div>
+      <input type="hidden" name="name" th:value="${cafe.cafeName}">
+      <input type="hidden" name="image" th:value="${cafe.image}">
+      <input type="hidden" name="address" th:value="${cafe.address}">
+      <input type="hidden" name="star" th:value="${cafe.star}">
+    </form>
   </div>
   <div class="result-list" th:if="${cafeList.isEmpty}">
     <div class="results">
@@ -122,6 +128,9 @@
       border: 1px solid black;
       /* background-image: url(image/icon-coffee.png); */
     }
+    .select {
+      cursor: pointer;
+    }
     .info {
       /* border: 1px solid black; */
       margin: 0px;
@@ -130,9 +139,11 @@
     .info > * {
       margin: 5px;
     }
-    .info > a {
+    .info > input {
+      border: 0px;
       font-weight: bolder;
       font-size: 20px;
+      font-family: Gowun Dodum;
     }
     .info > p:first-child {
       font-size: 20px;
@@ -152,5 +163,9 @@
   document.querySelector("#search-box>img").addEventListener("click", e =>{
     document.querySelector(".search-form").submit();
   });
+
+  function detailPage(f) {
+    f.submit();
+  }
 </script>
 </html>

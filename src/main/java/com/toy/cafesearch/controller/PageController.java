@@ -37,7 +37,7 @@ public class PageController {
         return mv;
     }
 
-    @GetMapping("/cafeDetail")
+    @PostMapping("/cafeDetail")
     public ModelAndView cafeDetail(ModelAndView mv,
                                    @RequestParam String name,
                                    @RequestParam String image,
@@ -49,5 +49,4 @@ public class PageController {
         mv.setViewName("cafeDetail");
         return mv;
     }
-
 }
