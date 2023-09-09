@@ -14,7 +14,7 @@
     <div class="head-menu">
         <h3 id="name">CafeSearch</h3>
         <h3 id="bestcafe">인기카페</h3>
-        <img id="login" title="로그인" src="/image/login01.png" />
+        <img id="login" title="로그인" src="/image/login01.png" onclick="login()"/>
     </div>
     <div class="search">
         <form class="search-form" action="/cafe/searchResult">
@@ -160,6 +160,11 @@
     document.querySelector("#search-box>img").addEventListener("click", e=>{
         document.querySelector(".search-form").submit();
     });
+
+    function login(){
+        location.assign("/cafe/member/loginPage/");
+    }
+
 </script>
 </body>
 </html>
