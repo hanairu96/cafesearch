@@ -16,12 +16,15 @@
       <div id="login">
         <br>
         <img src="/image/icon-coffee.png" style="width: 120px;height: 100px;">
-        <form id="loginForm" action="/cafe/login" method="post">
+        <form id="loginForm" action="/login" method="post">
           <input class="login-form" name="id" type="text" id="logInId" placeholder="아이디를 입력해주세요." style="width: 200px;"><br>
           <input class="login-form" name="password" type="password" id="logInPwd" placeholder="비밀번호를 입력해주세요." style="width: 200px;"><br>
           <span id="pwdCheck"><small></small></span>
           <button type="submit" id="loginBtn" class="customBtn btnStyle">로그인</button>
         </form>
+        <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+          <span id="error-message" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+        </div>
         <a href="/cafe/member/enrollMember">회원가입</a>
       </div>
     </div>
@@ -34,6 +37,9 @@
       height: 20px;
       width: 200px;
       margin: 5px;
+    }
+    #error-message{
+      color: red;
     }
     a{
       color: black;
