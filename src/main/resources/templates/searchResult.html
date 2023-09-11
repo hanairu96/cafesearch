@@ -1,91 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CafeSearch</title>
-  <link
-          href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
-          rel="stylesheet"
-  />
+  <th:block th:insert="~{/fragment/header::head}"></th:block>
 </head>
 <body>
-  <div class="banner-head">
-    <div class="head-menu">
-      <h3 id="name">CafeSearch</h3>
-      <form class="search-form" action="/cafe/searchResult">
-        <div id="search-box">
-          <input id="search-input" name="keyword" type="text" placeholder="카페 이름 검색" />
-          <img src="/image/search01.png" />
-        </div>
-      </form>
-      <h3 id="bestcafe">인기카페</h3>
-      <img id="login" title="로그인" src="/image/login01.png" />
-    </div>
-  </div>
-  <style>
-    .banner-head {
-      background-color: rgb(46, 35, 29);
-      height: 80px;
-      width: 100%;
-      top: 0;
-    }
-    .head-menu {
-      /* border: 1px solid white; */
-      width: 100%;
-      display: inline-flex;
-    }
-    #name {
-      color: aliceblue;
-      font-family: Gowun Dodum;
-      font-size: 30px;
-      margin: 0;
-      padding-top: 15px;
-      padding-left: 30px;
-      cursor: pointer;
-    }
-    #bestcafe {
-      color: aliceblue;
-      font-size: 20px;
-      font-family: Gowun Dodum;
-      margin: 0;
-      position: absolute;
-      right: 110px;
-      padding-top: 25px;
-      /* padding-left: 100px; */
-      cursor: pointer;
-    }
-    #login {
-      filter: invert(100%);
-      /* float: right; */
-      position: absolute;
-      right: 30px;
-      padding-top: 20px;
-      height: 40px;
-      width: 40px;
-      cursor: pointer;
-    }
-    #search-box {
-      margin-top: 20px;
-      margin-left: 50px;
-      /* margin: 0 auto; */
-      height: 40px;
-      width: 600px;
-      background-color: white;
-      border-radius: 50px;
-      display: flex;
-    }
-    #search-input {
-      height: 35px;
-      width: 520px;
-      border: 0px;
-      margin-left: 20px;
-    }
-    #search-box > img {
-      cursor: pointer;
-      filter: invert(40%);
-    }
-  </style>
+  <div th:replace="~{/fragment/header::header}"></div>
 
   <div class="result-list" th:unless="${cafeList.isEmpty}" th:each="cafe : ${cafeList}">
     <form class="results" action="/cafe/cafeDetail" method="post">
@@ -153,17 +72,10 @@
       padding-top: 65px;
     }
   </style>
+
+  <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
 <script>
-  let mainName = document.getElementById("name");
-  mainName.addEventListener("click", e =>{
-    location.assign("/cafe/");
-  });
-
-  document.querySelector("#search-box>img").addEventListener("click", e =>{
-    document.querySelector(".search-form").submit();
-  });
-
   function detailPage(f) {
     f.submit();
   }

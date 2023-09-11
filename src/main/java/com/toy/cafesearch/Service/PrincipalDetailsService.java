@@ -1,4 +1,4 @@
-package com.toy.cafesearch.config;
+package com.toy.cafesearch.Service;
 
 import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.repository.MemberRepository;

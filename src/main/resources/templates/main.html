@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CafeSearch</title>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
-            rel="stylesheet"
-    />
+    <th:block th:insert="~{/fragment/header::head}"></th:block>
 </head>
 <body>
 <div class="banner" th:style="'background-image: url('+@{/image/cafe02.jpg}+');'">
     <div class="head-menu">
-        <h3 id="name">CafeSearch</h3>
+        <h3 id="banner-name">CafeSearch</h3>
         <h3 id="bestcafe">인기카페</h3>
-        <img id="login" title="로그인" src="/image/login01.png" onclick="login()"/>
+        <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
     </div>
     <div class="search">
         <form class="search-form" action="/cafe/searchResult">
@@ -37,7 +31,7 @@
         width: 100%;
         display: inline-flex;
     }
-    #name {
+    #banner-name {
         color: aliceblue;
         font-family: Gowun Dodum;
         font-size: 30px;
@@ -56,7 +50,7 @@
         padding-top: 25px;
         cursor: pointer;
     }
-    #login {
+    #go-login {
         filter: invert(100%);
         position: absolute;
         right: 30px;
@@ -88,69 +82,7 @@
         filter: invert(40%);
     }
 </style>
-<footer>
-    <div id="rows">
-        <div>
-            <h3 id="f-name">CafeSearch</h3>
-        </div>
-        <div id="infos">
-            <ul>
-                <li class="pages">사이트 소개</li>
-                <li class="pages">공지사항</li>
-                <br />
-                <li>문의 메일: todaysbab@naver.com</li>
-            </ul>
-        </div>
-        <div>
-            <img src="/image/icon-coffee.png" />
-        </div>
-    </div>
-    <div id="copyright">
-        <p>
-            Copyright &copy;
-            <script>
-                document.write(new Date().getFullYear());
-            </script>
-            All rights reserved
-        </p>
-    </div>
-</footer>
-<style>
-    footer {
-        height: 200px;
-        background-color: whitesmoke;
-        margin-top: 20px;
-        padding-top: 0px;
-        font-family: Gowun Dodum;
-    }
-    #rows {
-        display: flex;
-    }
-    #f-name {
-        color: black;
-        font-size: 30px;
-        padding-left: 80px;
-        padding-top: 20px;
-    }
-    #infos {
-        padding-left: 100px;
-        padding-top: 20px;
-    }
-    #infos li {
-        list-style: none;
-    }
-    .pages {
-        cursor: pointer;
-    }
-    #rows img {
-        position: absolute;
-        right: 120px;
-        padding-top: 35px;
-    }
-    #copyright {
-        text-align: center;
-    }
-</style>
+<div th:replace="~{/fragment/footer::footer}"></div>
 <script>
     let mainName = document.getElementById("name");
     mainName.addEventListener("click", e =>{

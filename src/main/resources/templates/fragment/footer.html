@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CafeSearch</title>
+</head>
+<body th:fragment="footer">
+  <footer>
+    <div id="rows">
+      <div>
+        <h3 id="f-name">CafeSearch</h3>
+      </div>
+      <div id="infos">
+        <ul>
+          <li class="pages">사이트 소개</li>
+          <li class="pages">공지사항</li>
+          <br />
+          <li>문의 메일: todaysbab@naver.com</li>
+        </ul>
+      </div>
+      <div>
+        <img src="/image/icon-coffee.png" />
+      </div>
+    </div>
+    <div id="copyright">
+      <p>
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        All rights reserved
+      </p>
+    </div>
+  </footer>
+  <style>
+    footer {
+      height: 200px;
+      background-color: whitesmoke;
+      margin-top: 20px;
+      padding-top: 0px;
+      font-family: Gowun Dodum;
+    }
+    #rows {
+      display: flex;
+    }
+    #f-name {
+      color: black;
+      font-size: 30px;
+      padding-left: 80px;
+      padding-top: 20px;
+    }
+    #infos {
+      padding-left: 100px;
+      padding-top: 20px;
+    }
+    #infos li {
+      list-style: none;
+    }
+    .pages {
+      cursor: pointer;
+    }
+    #rows img {
+      position: absolute;
+      right: 120px;
+      padding-top: 35px;
+    }
+    #copyright {
+      text-align: center;
+    }
+  </style>
+</body>
+</html>
