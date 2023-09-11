@@ -23,7 +23,12 @@
                 </div>
             </form>
             <h3 id="bestcafe">인기카페</h3>
-            <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
+            <th:block th:if="${loginMember} == null">
+                <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
+            </th:block>
+            <th:block th:unless="${loginMember} == null">
+                <img id="go-myPage" title="마이페이지" src="/image/icon-user.png" onclick="myPage()"/>
+            </th:block>
         </div>
     </div>
     <style>
@@ -58,7 +63,7 @@
             /* padding-left: 100px; */
             cursor: pointer;
         }
-        #go-login {
+        #go-login, #go-myPage {
             filter: invert(100%);
             /* float: right; */
             position: absolute;
@@ -101,6 +106,10 @@
 
         function login(){
             location.assign("/cafe/member/loginPage/");
+        }
+
+        function myPage(){
+
         }
     </script>
 </body>

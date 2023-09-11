@@ -8,7 +8,12 @@
     <div class="head-menu">
         <h3 id="banner-name">CafeSearch</h3>
         <h3 id="bestcafe">인기카페</h3>
-        <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
+        <th:block th:if="${loginMember} == null">
+            <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
+        </th:block>
+        <th:block th:unless="${loginMember} == null">
+            <img id="go-myPage" title="마이페이지" src="/image/icon-user.png" onclick="myPage()"/>
+        </th:block>
     </div>
     <div class="search">
         <form class="search-form" action="/cafe/searchResult">
@@ -50,7 +55,7 @@
         padding-top: 25px;
         cursor: pointer;
     }
-    #go-login {
+    #go-login, #go-myPage{
         filter: invert(100%);
         position: absolute;
         right: 30px;
@@ -84,7 +89,7 @@
 </style>
 <div th:replace="~{/fragment/footer::footer}"></div>
 <script>
-    let mainName = document.getElementById("name");
+    let mainName = document.getElementById("banner-name");
     mainName.addEventListener("click", e =>{
         location.assign("/cafe/");
     });
@@ -95,6 +100,10 @@
 
     function login(){
         location.assign("/cafe/member/loginPage/");
+    }
+
+    function myPage(){
+
     }
 
 </script>

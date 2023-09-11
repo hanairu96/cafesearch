@@ -40,7 +40,8 @@ public class SecurityConfig {
                     .loginProcessingUrl("/login")
                     .usernameParameter("id")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/cafe/", true)
+                    .defaultSuccessUrl("/cafe/member/loginSuccess")
+                    //.failureForwardUrl("/cafe/member/loginFailure")
                     .permitAll()
             )
             .logout(withDefaults()); //로그아웃 기본 설정 - /logout으로 인증 해제

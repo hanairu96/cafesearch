@@ -7,12 +7,11 @@ import com.toy.cafesearch.dto.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
@@ -21,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
+@SessionAttributes({"loginMember"})
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/cafe")
@@ -91,5 +91,19 @@ public class PageController {
         memberService.saveMember(m);
 
         return "redirect:/cafe/";
+    }
+
+
+    @GetMapping("/member/loginSuccess")
+    public String loginSuccess(Model model){
+        Object member = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("loginMember", (Member)member);
+        log.info("loginMember: {}", model.getAttribute("loginMember"));
+        return "redirect:/cafe/";
+    }
+    @GetMapping("/member/loginFailure")
+    public String loginFailure(Model model){
+        log.info("로그인 실패");
+        return "redirect:/cafe/member/loginPage/";
     }
 }
