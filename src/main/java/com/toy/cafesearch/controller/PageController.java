@@ -2,6 +2,7 @@ package com.toy.cafesearch.controller;
 
 import com.toy.cafesearch.Service.CafeService;
 import com.toy.cafesearch.Service.MemberService;
+import com.toy.cafesearch.Service.ReivewService;
 import com.toy.cafesearch.dto.Cafe;
 import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.dto.Review;
@@ -29,6 +30,7 @@ public class PageController {
 
     private final CafeService cafeService;
     private final MemberService memberService;
+    private final ReivewService reivewService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/")
@@ -53,8 +55,11 @@ public class PageController {
                                    @RequestParam String address,
                                    @RequestParam double star){
         Cafe detailCafe = new Cafe(name, image, address, star);
-        log.info("{}", detailCafe);
+        List<Review> reviews = reivewService.findAllByCafeName(name);
+        log.info("카페: {}", detailCafe);
+        log.info("리뷰: {}", reviews);
         mv.addObject("detailCafe", detailCafe);
+        mv.addObject("reviews", reviews);
         mv.setViewName("cafeDetail");
         return mv;
     }

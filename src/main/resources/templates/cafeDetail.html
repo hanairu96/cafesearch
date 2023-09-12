@@ -20,23 +20,23 @@
   <hr>
   <div class="review-div">
     <div id="reivew-top">
-      <p id="title-text">리뷰(2)</p>
+      <p id="title-text" th:text="'리뷰('+${#lists.size(reviews)}+')'"></p>
       <img id="review-post"><p>작성하기</p>
     </div>
     <div class="review-list">
-      <div class="review">
+      <div class="review" th:each="review: ${reviews}">
         <div>
-          <div id="profile-img"></div>
-          <p id="member-id">아이디</p>
+          <img id="profile-img" src="/image/icon-user.png">
+          <p id="member-id" th:text="${review.memberId}"></p>
         </div>
         <div>
           <div id="review-text">
-            <p id="review-title">제목</p>
-            <p id="review-content">내용</p>
+            <p id="review-title" th:text="${review.title}"></p>
+            <p id="review-content" th:text="${review.content}"></p>
           </div>
           <div id="review-rest">
-            <div id="review-star">☆5</div>
-            <div id="review-date">23.06.05</div>
+            <div id="review-star" th:text="'☆'+${review.star}"></div>
+            <div id="review-date" th:text="${review.reviewDate}"></div>
           </div>
         </div>
       </div>
@@ -90,6 +90,9 @@
       height: 100px;
       width: 100px;
       margin: 30px;
+    }
+    #member-id{
+      text-align: center;
     }
     #review-text{
       border: 1px solid black;
