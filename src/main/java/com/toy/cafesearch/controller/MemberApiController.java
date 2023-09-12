@@ -2,6 +2,7 @@ package com.toy.cafesearch.controller;
 
 import com.toy.cafesearch.Service.MemberService;
 import com.toy.cafesearch.dto.Member;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/cafe/member")
 public class MemberApiController {
 
-    @Autowired
-    MemberService memberService;
+    private final MemberService memberService;
 
     @PostMapping("/idDuplicateCheck")
     public String idDuplicateCheck(String inputId){

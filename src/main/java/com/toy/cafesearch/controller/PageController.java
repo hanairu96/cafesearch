@@ -4,6 +4,7 @@ import com.toy.cafesearch.Service.CafeService;
 import com.toy.cafesearch.Service.MemberService;
 import com.toy.cafesearch.dto.Cafe;
 import com.toy.cafesearch.dto.Member;
+import com.toy.cafesearch.dto.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
+@RequiredArgsConstructor
 @SessionAttributes({"loginMember"})
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/cafe")
 public class PageController {
 

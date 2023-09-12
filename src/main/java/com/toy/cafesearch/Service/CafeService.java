@@ -8,6 +8,7 @@ import com.toy.cafesearch.naver.dto.SearchImageRes;
 import com.toy.cafesearch.naver.dto.SearchLocalReq;
 import com.toy.cafesearch.naver.dto.SearchLocalRes;
 import com.toy.cafesearch.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,14 +19,12 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class CafeService {
 
-    @Autowired
-    MemberRepository memberRepository;
-
-    @Autowired
-    NaverClient naverClient;
+    private final MemberRepository memberRepository;
+    private final NaverClient naverClient;
 
     public List<Member> members(){
         List<Member> member = memberRepository.findAll();
