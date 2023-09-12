@@ -8,7 +8,6 @@ import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.dto.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -54,7 +53,11 @@ public class PageController {
                                    @RequestParam String image,
                                    @RequestParam String address,
                                    @RequestParam double star){
+
         Cafe detailCafe = new Cafe(name, image, address, star);
+        if (!cafeService.findByCafeName(name).isEmpty()){
+            detailCafe = cafeService.findByCafeName(name).get();
+        }
         List<Review> reviews = reivewService.findAllByCafeName(name);
         log.info("카페: {}", detailCafe);
         log.info("리뷰: {}", reviews);
