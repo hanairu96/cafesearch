@@ -2,7 +2,7 @@ package com.toy.cafesearch.controller;
 
 import com.toy.cafesearch.Service.CafeService;
 import com.toy.cafesearch.Service.MemberService;
-import com.toy.cafesearch.Service.ReivewService;
+import com.toy.cafesearch.Service.ReviewService;
 import com.toy.cafesearch.dto.Cafe;
 import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.dto.Review;
@@ -29,7 +29,7 @@ public class PageController {
 
     private final CafeService cafeService;
     private final MemberService memberService;
-    private final ReivewService reivewService;
+    private final ReviewService reivewService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/")

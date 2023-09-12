@@ -1,6 +1,7 @@
 package com.toy.cafesearch.controller;
 
-import com.toy.cafesearch.Service.ReivewService;
+import com.toy.cafesearch.Service.ReviewService;
+import com.toy.cafesearch.dto.Cafe;
 import com.toy.cafesearch.dto.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("cafe/review/")
 public class ReviewApiController {
 
-    private final ReivewService reivewService;
+    private final ReviewService reivewService;
 
     @GetMapping("/{reviewNo}")
     public Review getReview(@PathVariable int reviewNo){
@@ -27,8 +28,8 @@ public class ReviewApiController {
     }
 
     @PostMapping("/")
-    public void postReview(@RequestBody Review review){
-        reivewService.saveReview(review);
+    public void postReview(@RequestBody Review review, Cafe cafe){
+        reivewService.saveReview(review, cafe);
     }
 
     @PutMapping("/{reviewNo}")
