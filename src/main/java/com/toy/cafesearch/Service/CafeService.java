@@ -1,39 +1,31 @@
 package com.toy.cafesearch.Service;
 
 import com.toy.cafesearch.dto.Cafe;
-import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.naver.NaverClient;
 import com.toy.cafesearch.naver.dto.SearchImageReq;
 import com.toy.cafesearch.naver.dto.SearchImageRes;
 import com.toy.cafesearch.naver.dto.SearchLocalReq;
 import com.toy.cafesearch.naver.dto.SearchLocalRes;
-import com.toy.cafesearch.repository.MemberRepository;
+import com.toy.cafesearch.repository.CafeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class CafeService {
 
-    private final MemberRepository memberRepository;
+    private final CafeRepository cafeRepository;
     private final NaverClient naverClient;
 
-    public List<Member> members(){
-        List<Member> member = memberRepository.findAll();
-        return member;
-    }
-
-    public Optional<Member> mb() {
-        Optional<Member> m = memberRepository.findById("TESTID");
-        return m;
+    public Optional<Cafe> findByCafeName(String cafeName){
+        Optional<Cafe> cafe = cafeRepository.findById(cafeName);
+        return cafe;
     }
 
     public List<Cafe> cafeListResult(String query){
