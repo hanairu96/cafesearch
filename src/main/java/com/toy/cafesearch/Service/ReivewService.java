@@ -1,15 +1,11 @@
 package com.toy.cafesearch.Service;
 
 import com.toy.cafesearch.dto.Review;
-import com.toy.cafesearch.naver.NaverClient;
-import com.toy.cafesearch.repository.MemberRepository;
 import com.toy.cafesearch.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,12 +14,31 @@ import java.util.Optional;
 @Service
 public class ReivewService {
 
-    private final MemberRepository memberRepository;
     private final ReviewRepository reviewRepository;
-    private final NaverClient naverClient;
 
     public List<Review> findAllByCafeName(String cafeName){
         List<Review> reviews = reviewRepository.findAllByCafeName(cafeName);
         return reviews;
+    }
+
+    public Optional<Review> findByReviewNo(int reviewNo){
+        Optional<Review> review = reviewRepository.findById(reviewNo);
+        return review;
+    }
+
+    public void saveReview(Review review){
+        reviewRepository.save(review);
+    }
+
+    public void updateReview(int reviewNo, Review updateReview){
+        Review review = findByReviewNo(reviewNo).get();
+        review.setTitle(updateReview.getTitle());
+        review.setStar(updateReview.getStar());
+        review.setContent(updateReview.getContent());
+        reviewRepository.save(review);
+    }
+
+    public void deleteReview(int reviewNo){
+        reviewRepository.deleteById(reviewNo);
     }
 }

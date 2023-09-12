@@ -6,9 +6,11 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.sql.Date;
 
+@DynamicUpdate
 @Entity
 @Data
 @NoArgsConstructor
