@@ -285,8 +285,10 @@
   <script>
     //아이디 사용 가능 여부 확인
     $("#inputId").keyup(e=>{
+      let inputId = $("#inputId").val().trim();
       $.ajax({
-        url:"/cafe/member/idDuplicateCheck?inputId="+$("#inputId").val().trim(),
+        url:"/cafe/member/idDuplicateCheck",
+        data: {inputId: inputId},
         type: "post",
         success:data=>{
           console.log(data);
