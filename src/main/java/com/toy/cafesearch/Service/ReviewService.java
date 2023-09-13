@@ -79,17 +79,23 @@ public class ReviewService {
     public void deleteReview(int reviewNo){
         //리뷰 삭제시 카페 평균 별점도 수정
         Review review = findByReviewNo(reviewNo).get();
-        Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeName());
-        int starSum = findAllByCafeName(review.getCafeName())
+        String reviewCafeName = review.getCafeName();
+        Optional<Cafe> optionalCafe = cafeRepository.findById(reviewCafeName);
+        int starSum = findAllByCafeName(reviewCafeName)
                 .stream()
                 .map(Review::getStar)
                 .collect(reducing(Integer::sum))
                 .get()
                 - review.getStar();
-        int reviewCount = findAllByCafeName(review.getCafeName()).size() - 1;
+        int reviewCount = findAllByCafeName(reviewCafeName).size() - 1;
         optionalCafe.get().setStar((double) starSum / reviewCount);
         cafeRepository.save(optionalCafe.get());
 
         reviewRepository.deleteById(reviewNo);
+
+        //리뷰가 존재하지 않으면 해당 카페 데이터도 삭제
+        if (findAllByCafeName(reviewCafeName).isEmpty()){
+           cafeRepository.deleteById(reviewCafeName);
+        }
     }
 }
