@@ -53,8 +53,22 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    @Transactional
     public void updateReview(int reviewNo, Review updateReview){
         Review review = findByReviewNo(reviewNo).get();
+
+        //리뷰 수정시 카페 평균 별점도 수정
+        Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeName());
+        int starSum = findAllByCafeName(review.getCafeName())
+                .stream()
+                .map(Review::getStar)
+                .collect(reducing(Integer::sum))
+                .get()
+                - review.getStar() + updateReview.getStar();
+        int reviewCount = findAllByCafeName(review.getCafeName()).size();
+        optionalCafe.get().setStar((double) starSum / reviewCount);
+        cafeRepository.save(optionalCafe.get());
+
         review.setTitle(updateReview.getTitle());
         review.setStar(updateReview.getStar());
         review.setContent(updateReview.getContent());
