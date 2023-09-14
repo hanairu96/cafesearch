@@ -47,7 +47,7 @@ public class PageController {
         return mv;
     }
 
-    @PostMapping("/cafeDetail")
+    @GetMapping("/cafeDetail")
     public ModelAndView cafeDetail(ModelAndView mv,
                                    @RequestParam String name,
                                    @RequestParam String image,

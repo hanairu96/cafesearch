@@ -7,7 +7,7 @@
   <div th:replace="~{/fragment/header::header}"></div>
 
   <div class="result-list" th:unless="${cafeList.isEmpty}" th:each="cafe : ${cafeList}">
-    <form class="results" action="/cafe/cafeDetail" method="post">
+    <form class="results" action="/cafe/cafeDetail" method="get">
       <input class="img select" th:style="'background-image: url('+@{${cafe.image}}+');'"
            onclick="detailPage(this.form)">
       <div class="info">
