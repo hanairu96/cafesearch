@@ -21,13 +21,17 @@
   <div class="review-div">
     <div id="reivew-top">
       <p id="title-text" th:text="'리뷰('+${#lists.size(reviews)}+')'"></p>
-      <img id="review-post"><p>작성하기</p>
+      <p id="review-post" onclick="reviewPost();">작성하기</p>
     </div>
     <div class="review-list">
       <div class="review" th:each="review: ${reviews}">
-        <div>
+        <div id="review-left">
           <img id="profile-img" src="/image/icon-user.png">
           <p id="member-id" th:text="${review.memberId}"></p>
+          <div id="review-change">
+            <p onclick="reviewUpdate();">수정</p>
+            <p onclick="reviewDelete();">삭제</p>
+          </div>
         </div>
         <div>
           <div id="review-text">
@@ -78,6 +82,10 @@
     #reivew-top{
       display: flex;
     }
+    #review-post{
+      margin-left: 20px;
+      cursor: pointer;
+    }
     .review{
       display: flex;
       width: 1000px;
@@ -89,14 +97,25 @@
       border-radius: 50%;
       height: 100px;
       width: 100px;
-      margin: 30px;
+      margin: 35px;
     }
     #member-id{
       text-align: center;
     }
+    #review-change{
+      display: flex;
+      width: 80px;
+      margin: 0 auto;
+      padding: 10px 25px;
+    }
+    #review-change>*{
+      margin-left: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
     #review-text{
       border: 1px solid black;
-      height: 200px;
+      height: 220px;
       width: 700px;
       padding: 15px;
     }
@@ -112,7 +131,7 @@
       font-size: 30px;
     }
     #review-date{
-      margin-left: 640px;
+      margin-left: 600px;
     }
   </style>
 
@@ -122,5 +141,19 @@
 
   //history.replaceState({}, null, location.pathname);
 
+  const reviewPost = ()=>{
+    //숨겨진 리뷰 작성 화면이 나오고
+    //ajax로 데이터 보냄
+    //이휴 리뷰 작성 화면 사라짐
+    //리뷰 작성 화면 아래에 리뷰 목록이 있음
+  }
+
+  const reviewUpdate = ()=>{
+
+  }
+
+  const reviewDelete = ()=>{
+
+  }
 </script>
 </html>
