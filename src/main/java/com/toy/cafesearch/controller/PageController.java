@@ -68,6 +68,14 @@ public class PageController {
         return mv;
     }
 
+    @GetMapping("/reviewWrite")
+    public ModelAndView reviewWrite(ModelAndView mv, @RequestParam String cafeName){
+        log.info(cafeName);
+        mv.addObject("cafeName", cafeName);
+        mv.setViewName("reviewWrite");
+        return mv;
+    }
+
     @GetMapping("/member/loginPage/")
     public String loginPage(){
         return "loginPage";
