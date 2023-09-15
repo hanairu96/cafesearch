@@ -6,7 +6,7 @@
 <body>
   <div th:replace="~{/fragment/header::header}"></div>
 
-  <div class="result-list" th:unless="${cafeList.isEmpty}" th:each="cafe : ${cafeList}">
+  <div class="result-list" th:unless="${cafeList.isEmpty}" th:each="cafe, cafeStat : ${cafeList}">
     <form class="results" action="/cafe/cafeDetail" method="get">
       <input class="img select" th:style="'background-image: url('+@{${cafe.image}}+');'"
            onclick="detailPage(this.form)">
@@ -16,10 +16,9 @@
         <p th:text="'☆'+${cafe.star}"></p>
         <p th:text="${cafe.address}"></p>
       </div>
+      <input type="hidden" name="query", th:value="${query}">
+      <input type="hidden" name="index", th:value="${cafeStat.index}">
       <input type="hidden" name="name" th:value="${cafe.cafeName}">
-      <input type="hidden" name="image" th:value="${cafe.image}">
-      <input type="hidden" name="address" th:value="${cafe.address}">
-      <input type="hidden" name="star" th:value="${cafe.star}">
     </form>
   </div>
   <div class="result-list" th:if="${cafeList.isEmpty}">

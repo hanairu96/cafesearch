@@ -43,18 +43,19 @@ public class PageController {
         List<Cafe> cafeList = cafeService.cafeListResult(keyword);
         log.info("{}",cafeList);
         mv.addObject("cafeList", cafeList);
+        mv.addObject("query", keyword);
         mv.setViewName("searchResult");
         return mv;
     }
 
     @GetMapping("/cafeDetail")
     public ModelAndView cafeDetail(ModelAndView mv,
-                                   @RequestParam String name,
-                                   @RequestParam String image,
-                                   @RequestParam String address,
-                                   @RequestParam double star){
+                                   @RequestParam String query,
+                                   @RequestParam String index,
+                                   @RequestParam String name){
 
-        Cafe detailCafe = new Cafe(name, image, address, star);
+        Cafe detailCafe = cafeService.cafeResult(query, Integer.parseInt(index));
+//        Cafe detailCafe = new Cafe(name, image, address, star);
         if (!cafeService.findByCafeName(name).isEmpty()){
             detailCafe = cafeService.findByCafeName(name).get();
         }
@@ -101,7 +102,6 @@ public class PageController {
 
         return "redirect:/cafe/";
     }
-
 
     @GetMapping("/member/loginSuccess")
     public String loginSuccess(Model model){
