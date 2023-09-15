@@ -12,14 +12,14 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("cafe/review/")
+@RequestMapping("/cafe/review/")
 public class ReviewApiController {
 
-    private final ReviewService reivewService;
+    private final ReviewService reviewService;
 
     @GetMapping("/{reviewNo}")
     public Review getReview(@PathVariable int reviewNo){
-        Optional<Review> optionalReview = reivewService.findByReviewNo(reviewNo);
+        Optional<Review> optionalReview = reviewService.findByReviewNo(reviewNo);
         if (optionalReview.isEmpty()){
             return null;
         }else {
@@ -29,17 +29,17 @@ public class ReviewApiController {
 
     @PostMapping("/")
     public void postReview(@RequestBody Review review, Cafe cafe){
-        reivewService.saveReview(review, cafe);
+        reviewService.saveReview(review, cafe);
     }
 
     @PutMapping("/{reviewNo}")
     public void updateReview(@PathVariable int reviewNo, @RequestBody Review updateReview){
-        reivewService.updateReview(reviewNo, updateReview);
+        reviewService.updateReview(reviewNo, updateReview);
     }
 
     @DeleteMapping("/{reviewNo}")
     public void deleteReview(@PathVariable int reviewNo){
-        reivewService.deleteReview(reviewNo);
+        reviewService.deleteReview(reviewNo);
     }
 
 }
