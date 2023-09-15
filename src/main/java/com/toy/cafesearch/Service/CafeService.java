@@ -77,4 +77,10 @@ public class CafeService {
         }
         return cafeList;
     }
+
+    public Cafe cafeResult(String query, int index){
+        List<Cafe> cafeList = cafeListResult(query);
+        Cafe cafe = cafeList.get(index);
+        return cafe;
+    }
 }
