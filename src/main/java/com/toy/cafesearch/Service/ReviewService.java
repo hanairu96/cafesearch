@@ -45,9 +45,14 @@ public class ReviewService {
                     .stream()
                     .map(Review::getStar)
                     .collect(reducing(Integer::sum))
-                    .get();
+                    .get()
+                    +review.getStar();
             int reviewCount = findAllByCafeName(review.getCafeName()).size() + 1;
-            optionalCafe.get().setStar((double) starSum / reviewCount);
+            double averageStar = (double) starSum / reviewCount;
+            log.info("starSum: {}", starSum);
+            log.info("reviewCount: {}", reviewCount);
+            log.info("averageStar: {}", averageStar);
+            optionalCafe.get().setStar(Math.round(averageStar*100)/100.0); //소수점 2번째 자리까지만 저장
             cafeRepository.save(optionalCafe.get());
         }
         reviewRepository.save(review);
