@@ -69,9 +69,10 @@ public class PageController {
     }
 
     @GetMapping("/reviewWrite")
-    public ModelAndView reviewWrite(ModelAndView mv, @RequestParam String cafeName){
-        log.info(cafeName);
-        mv.addObject("cafeName", cafeName);
+    public ModelAndView reviewWrite(ModelAndView mv, String query, String index, String name){
+        mv.addObject("query", query);
+        mv.addObject("index", index);
+        mv.addObject("cafeName", name);
         mv.setViewName("reviewWrite");
         return mv;
     }

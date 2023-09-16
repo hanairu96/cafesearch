@@ -138,8 +138,13 @@
 <script>
   //history.replaceState({}, null, location.pathname);
 
+   let url = new URL(window.location.href); //현재 페이지 URL
+   let urlParams = url.searchParams; //URL의 파라미터들
+   let query = urlParams.get("query");
+   let index = urlParams.get("index");
+
   const reviewPost = (cafeName)=>{
-    location.assign("/cafe/reviewWrite?cafeName="+cafeName);
+    location.assign("/cafe/reviewWrite?index="+index+"&query="+query+"&name="+cafeName);
   }
 
   const reviewUpdate = (i)=>{
