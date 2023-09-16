@@ -21,15 +21,16 @@
   <div class="review-div">
     <div id="reivew-top">
       <p id="title-text" th:text="'리뷰('+${#lists.size(reviews)}+')'"></p>
-      <p id="review-post" onclick="reviewPost();">작성하기</p>
+      <p id="review-post" th:onclick="reviewPost([[${detailCafe.cafeName}]]);">작성하기</p>
     </div>
+
     <div class="review-list">
       <div class="review" th:each="review: ${reviews}">
         <div id="review-left">
           <img id="profile-img" src="/image/icon-user.png">
           <p id="member-id" th:text="${review.memberId}"></p>
           <div id="review-change">
-            <p onclick="reviewUpdate();">수정</p>
+            <p th:onclick="reviewUpdate([[${review.reviewNo}]]);">수정</p>
             <p onclick="reviewDelete();">삭제</p>
           </div>
         </div>
@@ -44,13 +45,10 @@
           </div>
         </div>
       </div>
-      <hr>
     </div>
   </div>
+
   <style>
-    body{
-      font-family: "Gowun Dodum";
-    }
     #cafe-image{
       border: 1px solid black;
       height: 400px;
@@ -138,22 +136,17 @@
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
 <script>
-
   //history.replaceState({}, null, location.pathname);
 
-  const reviewPost = ()=>{
-    //숨겨진 리뷰 작성 화면이 나오고
-    //ajax로 데이터 보냄
-    //이휴 리뷰 작성 화면 사라짐
-    //리뷰 작성 화면 아래에 리뷰 목록이 있음
+  const reviewPost = (cafeName)=>{
+    location.assign("/cafe/reviewWrite?cafeName="+cafeName);
   }
 
-  const reviewUpdate = ()=>{
-
+  const reviewUpdate = (i)=>{
+    console.log(i);
   }
 
   const reviewDelete = ()=>{
-
   }
 </script>
 </html>
