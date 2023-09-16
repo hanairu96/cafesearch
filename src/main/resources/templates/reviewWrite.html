@@ -6,7 +6,7 @@
 <body>
   <div th:replace="~{/fragment/header::header}"></div>
 
-  <form action="/cafe/" class="board">
+  <div class="board">
     <h2 id="main-title">리뷰 작성</h2>
     <table class="info-table">
       <tr>
@@ -15,11 +15,19 @@
       </tr>
       <tr>
         <td class="line-title">카페명</td>
-        <td class="line-content" th:text="${cafeName}"></td>
+        <td class="line-content" id="cafe-name" th:text="${cafeName}"></td>
       </tr>
       <tr>
         <td class="line-title">별점</td>
-        <td class="line-content"></td>
+        <td class="line-content">
+          <select id="select-star">
+            <option value="5" selected>☆☆☆☆☆5</option>
+            <option value="4">☆☆☆☆4</option>
+            <option value="3">☆☆☆3</option>
+            <option value="2">☆☆2</option>
+            <option value="1">☆1</option>
+          </select>
+        </td>
       </tr>
     </table>
     <textarea id="input-content" rows="10" cols="130" placeholder="내용을 입력하세요."></textarea>
@@ -27,7 +35,7 @@
       <button type="button" id="enroll-end" class="customBtn btnStyle" onclick="enrollEnd();">등록</button>
       <button type="button" id="cancel" class="customBtn btnStyle" onclick="cancel();">취소</button>
     </div>
-  </form>
+  </div>
   <style>
     .board>*{
       margin: 0 auto;
@@ -75,4 +83,27 @@
 
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
+<script>
+  const enrollEnd = ()=>{
+      let title = $("#input-title").val();
+      let cafeName = $("#cafe-name").text();
+      let star = $("#select-star").val();
+      let content = $("#input-content").val();
+      let reviewElements = [title, cafeName, star, content];
+      let refer = document.referrer; //이전 주소인 카페 상세 페이지
+
+      $.ajax({
+        url: "/cafe/review/",
+        method: "post",
+        data: ["reviewElements", reviewElements],
+        success: data=>{
+          location.replace(refer);
+        }
+      });
+    }
+
+  const cancel = ()=>{
+    history.back();
+  }
+</script>
 </html>
