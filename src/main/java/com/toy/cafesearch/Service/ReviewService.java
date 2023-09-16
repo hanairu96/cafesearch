@@ -37,6 +37,7 @@ public class ReviewService {
         Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeName());
         if(optionalCafe.isEmpty()){
             //첫 리뷰 등록시 카페 데이터도 생성됨
+            cafe.setStar(review.getStar());
             Cafe newCafe = new Cafe(cafe.getCafeName(), cafe.getImage(), cafe.getAddress(), cafe.getStar());
             cafeRepository.save(newCafe);
         }else {
