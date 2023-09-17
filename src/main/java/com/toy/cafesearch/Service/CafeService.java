@@ -60,6 +60,7 @@ public class CafeService {
             log.info("searchImageRes: {}", searchImageRes);
             cafe.setCafeName(resultTitle);
 
+            //네이버 플레이스의 사진 링크에는 "pstatic"이 포함되어 있는 경우가 많아서 해당 키워드가 있는 링크가 있는지 찾음
             Optional<SearchImageRes.SearchImageItem> basicLink = searchImageRes.getItems().stream()
                     .filter(i -> i.getLink().contains("pstatic") == true).findFirst();
 
@@ -70,7 +71,14 @@ public class CafeService {
                 imageLink = searchImageRes.getItems().stream().findFirst().get().getLink();
             }
             cafe.setImage(imageLink);
-            cafe.setStar(4.8);
+
+            //카페 테이블에 존재하지 않는 카페면 별점을 0으로, 존재하는 카페면 해당 별점으로 set 시킴
+            if(cafeRepository.findById(resultTitle).isEmpty()){
+                cafe.setStar(0);
+            }else {
+                cafe.setStar(cafeRepository.findById(resultTitle).get().getStar());
+            }
+
             cafe.setAddress(result.getRoadAddress());
 
             cafeList.add(cafe);
