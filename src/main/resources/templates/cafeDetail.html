@@ -150,8 +150,8 @@
     location.assign("/cafe/reviewWrite?index="+index+"&query="+query+"&name="+cafeName);
   }
 
-  const reviewUpdate = (i)=>{
-    console.log(i);
+  const reviewUpdate = (reviewNo)=>{
+    location.assign("/cafe/reviewUpdate?index="+index+"&query="+query+"&reviewNo="+reviewNo);
   }
 
   const reviewDelete = ()=>{

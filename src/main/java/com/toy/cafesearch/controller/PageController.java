@@ -77,6 +77,17 @@ public class PageController {
         return mv;
     }
 
+    @GetMapping("/reviewUpdate")
+    public ModelAndView reviewUpdate(ModelAndView mv, String query, String index, int reviewNo){
+        mv.addObject("query", query);
+        mv.addObject("index", index);
+        Review review = reivewService.findByReviewNo(reviewNo).get();
+        mv.addObject("cafeName", review.getCafeName());
+        mv.addObject("review", review);
+        mv.setViewName("reviewUpdate");
+        return mv;
+    }
+
     @GetMapping("/member/loginPage/")
     public String loginPage(){
         return "loginPage";
