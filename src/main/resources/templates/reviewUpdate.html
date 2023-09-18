@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+  <th:block th:insert="~{/fragment/header::head}"></th:block>
+</head>
+<body>
+  <div th:replace="~{/fragment/header::header}"></div>
+
+  <div class="board">
+    <h2 id="main-title">리뷰 수정</h2>
+    <table class="info-table">
+      <tr>
+        <td class="line-title">제목</td>
+        <td class="line-content"><input type="text" id="input-title" placeholder="제목을 입력하세요." th:value="${review.title}"></td>
+      </tr>
+      <tr>
+        <td class="line-title">카페명</td>
+        <td class="line-content" id="cafe-name" th:text="${cafeName}"></td>
+      </tr>
+      <tr>
+        <td class="line-title">별점</td>
+        <td class="line-content">
+          <select id="select-star">
+            <option value="5" selected>★★★★★5</option>
+            <option value="4">★★★★☆4</option>
+            <option value="3">★★★☆☆3</option>
+            <option value="2">★★☆☆☆2</option>
+            <option value="1">★☆☆☆☆1</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <textarea id="input-content" rows="10" cols="130" placeholder="내용을 입력하세요."></textarea>
+    <input id="query" style="display: none" th:value="${query}">
+    <input id="index" style="display: none" th:value="${index}">
+    <div id="buttons">
+      <button type="button" id="enroll-end" class="customBtn btnStyle" onclick="updateEnd();">수정</button>
+      <button type="button" id="cancel" class="customBtn btnStyle" onclick="cancel();">취소</button>
+    </div>
+  </div>
+  <style>
+    .board>*{
+      margin: 0 auto;
+    }
+    #main-title{
+      text-align: center;
+      margin-top: 20px !important;
+    }
+    .info-table{
+      border-collapse: collapse;
+      width: 700px;
+      margin-top: 20px;
+    }
+    .line-title, .line-content{
+      border: 1px solid black;
+    }
+    .line-title{
+      text-align: center;
+      width: 250px;
+    }
+    .line-content{
+      width: 450px;
+    }
+    #input-title{
+      width: 450px;
+    }
+    #input-content{
+      position: absolute;
+      left: 50%;
+      margin-left: -350px;
+      width: 700px;
+      resize: none;
+      margin-top: 20px;
+    }
+    #buttons{
+      display: flex;
+      margin-top: 200px;
+      margin-left: 60%;
+    }
+    #buttons>button {
+      width: 100px;
+      margin-left: 10px;
+    }
+  </style>
+
+  <div th:replace="~{/fragment/footer::footer}"></div>
+</body>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+
+  //저장된 textarea의 값 출력
+  document.getElementById("input-content").value = [[${review.content}]];
+
+  const updateEnd = ()=>{
+      if ($("#input-title").val()==""||$("#input-content").val()==""){
+        alert("제목과 내용을 입력하세요.");
+      }else {
+        let title = $("#input-title").val();
+        let cafeName = $("#cafe-name").text();
+        let star = $("#select-star").val();
+        let content = $("#input-content").val();
+
+        let query = $("#query").val();
+        let index = $("#index").val();
+
+        let putElements = [title, cafeName, star, content, query, index];
+        let refer = document.referrer; //이전 주소인 카페 상세 페이지
+        let reviewNo = [[${review.reviewNo}]];
+
+        let elements = JSON.stringify(putElements);
+
+        $.ajax({
+          url: "/cafe/review/"+reviewNo,
+          type: "put",
+          data: elements,
+          contentType: "application/json;charset=UTF-8",
+          success: data => {
+            alert("수정되었습니다.");
+            location.replace(refer);
+          },
+          error: e => {
+            alert("수정에 실패하였습니다.");
+          }
+        });
+
+      }
+    }
+
+  const cancel = ()=>{
+    history.back();
+  }
+
+  /*]]>*/
+</script>
+</html>
