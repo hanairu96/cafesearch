@@ -30,8 +30,8 @@
           <img id="profile-img" src="/image/icon-user.png">
           <p id="member-id" th:text="${review.memberId}"></p>
           <div id="review-change">
-            <p th:onclick="reviewUpdate([[${review.reviewNo}]]);">수정</p>
-            <p onclick="reviewDelete();">삭제</p>
+            <input type="button" value="수정" th:onclick="reviewUpdate([[${review.reviewNo}]]);">
+            <input type="button" value="삭제" onclick="reviewDelete();">
           </div>
         </div>
         <div>
@@ -110,6 +110,9 @@
       margin-left: 5px;
       margin-right: 5px;
       cursor: pointer;
+      width: 29px;
+      border: 0px;
+      background-color: white;
     }
     #review-text{
       border: 1px solid black;

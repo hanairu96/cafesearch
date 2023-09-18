@@ -30,7 +30,7 @@
         </td>
       </tr>
     </table>
-    <textarea id="input-content" rows="10" cols="130" placeholder="내용을 입력하세요." required></textarea>
+    <textarea id="input-content" rows="10" cols="130" placeholder="내용을 입력하세요."></textarea>
     <input id="query" style="display: none" th:value="${query}">
     <input id="index" style="display: none" th:value="${index}">
     <div id="buttons">
@@ -86,27 +86,27 @@
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
 <script>
+  let title = $("#input-title").val();
+  let cafeName = $("#cafe-name").text();
+  let star = $("#select-star").val();
+  let content = $("#input-content").val();
+
+  let query = $("#query").val();
+  let index = $("#index").val();
+
+  let postElements = [title, cafeName, star, content, query, index];
+  let refer = document.referrer; //이전 주소인 카페 상세 페이지
+
   const enrollEnd = ()=>{
       if ($("#input-title").val()==""||$("#input-content").val()==""){
         alert("제목과 내용을 입력하세요.");
       }else {
-
-        let title = $("#input-title").val();
-        let cafeName = $("#cafe-name").text();
-        let star = $("#select-star").val();
-        let content = $("#input-content").val();
-
-        let query = $("#query").val();
-        let index = $("#index").val();
-
-        let postElements = [title, cafeName, star, content, query, index];
-        let refer = document.referrer; //이전 주소인 카페 상세 페이지
-
         $.ajax({
           url: "/cafe/review/",
           method: "post",
           data: {postElements: postElements},
           success: data => {
+            alert("저장되었습니다.");
             location.replace(refer);
           }
         });

@@ -11,7 +11,7 @@
       <input class="img select" th:style="'background-image: url('+@{${cafe.image}}+');'"
            onclick="detailPage(this.form)">
       <div class="info">
-        <input class="select" th:value="${cafe.cafeName}"
+        <input type="button" class="select" th:value="${cafe.cafeName}"
            onclick="detailPage(this.form)">
         <p th:text="'☆'+${cafe.star}"></p>
         <p th:text="${cafe.address}"></p>
