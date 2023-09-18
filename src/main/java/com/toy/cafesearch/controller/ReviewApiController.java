@@ -65,7 +65,25 @@ public class ReviewApiController {
     }
 
     @PutMapping("/{reviewNo}")
-    public void updateReview(@PathVariable int reviewNo, @RequestBody Review updateReview){
+    public void updateReview(@RequestBody List<String> elements, @PathVariable int reviewNo){
+        String title = elements.get(0);
+        String cafeName = elements.get(1);
+        int star = Integer.parseInt(elements.get(2));
+        String content = elements.get(3);
+        String query = elements.get(4);
+        int index = Integer.parseInt(elements.get(5));
+        Object loginMember = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        LocalDate localDate = LocalDate.now();
+
+        Review updateReview = Review.builder()
+                .cafeName(cafeName)
+                .memberId(((Member)loginMember).getMemberId())
+                .title(title)
+                .star(star)
+                .reviewDate(Date.valueOf(localDate))
+                .content(content).build();
+
         reviewService.updateReview(reviewNo, updateReview);
     }
 
