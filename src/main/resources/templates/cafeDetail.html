@@ -21,7 +21,7 @@
   <div class="review-div">
     <div id="reivew-top">
       <p id="title-text" th:text="'리뷰('+${#lists.size(reviews)}+')'"></p>
-      <p id="review-post" th:onclick="reviewPost([[${detailCafe.cafeName}]]);">작성하기</p>
+      <p th:if="${not #strings.isEmpty(loginMember)}" id="review-post" th:onclick="reviewPost([[${detailCafe.cafeName}]]);">작성하기</p>
     </div>
 
     <div class="review-list">
@@ -30,8 +30,8 @@
           <img id="profile-img" src="/image/icon-user.png">
           <p id="member-id" th:text="${review.memberId}"></p>
           <div id="review-change">
-            <input type="button" value="수정" th:onclick="reviewUpdate([[${review.reviewNo}]]);">
-            <input type="button" value="삭제" th:onclick="reviewDelete([[${review.reviewNo}]]);">
+            <input th:if="${review.memberId==loginMember.memberId}" type="button" value="수정" th:onclick="reviewUpdate([[${review.reviewNo}]]);">
+            <input th:if="${review.memberId==loginMember.memberId}" type="button" value="삭제" th:onclick="reviewDelete([[${review.reviewNo}]]);">
           </div>
         </div>
         <div>

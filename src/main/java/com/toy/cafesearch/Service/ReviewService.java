@@ -103,7 +103,7 @@ public class ReviewService {
 
         //리뷰가 존재하지 않으면 해당 카페 데이터도 삭제
         if (findAllByCafeName(reviewCafeName).isEmpty()){
-           cafeRepository.deleteById(reviewCafeName);
+            cafeRepository.deleteById(reviewCafeName);
         }
     }
 }
