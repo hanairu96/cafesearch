@@ -72,7 +72,8 @@ public class ReviewService {
                 .get()
                 - review.getStar() + updateReview.getStar();
         int reviewCount = findAllByCafeName(review.getCafeName()).size();
-        optionalCafe.get().setStar((double) starSum / reviewCount);
+        double averageStar = (double) starSum / reviewCount;
+        optionalCafe.get().setStar(Math.round(averageStar*100)/100.0);
         cafeRepository.save(optionalCafe.get());
 
         review.setTitle(updateReview.getTitle());
@@ -94,7 +95,8 @@ public class ReviewService {
                 .get()
                 - review.getStar();
         int reviewCount = findAllByCafeName(reviewCafeName).size() - 1;
-        optionalCafe.get().setStar((double) starSum / reviewCount);
+        double averageStar = (double) starSum / reviewCount;
+        optionalCafe.get().setStar(Math.round(averageStar*100)/100.0);
         cafeRepository.save(optionalCafe.get());
 
         reviewRepository.deleteById(reviewNo);
