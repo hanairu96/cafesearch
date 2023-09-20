@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .requestMatchers("/static/message/**").permitAll()
                 .requestMatchers("/cafe/").permitAll()
                 .requestMatchers("/cafe/searchResult").permitAll()
+                .requestMatchers("/cafe/cafeDetail").permitAll()
                 .requestMatchers("/cafe/member/**").permitAll()
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/cafe/member/enrollMember").permitAll()
