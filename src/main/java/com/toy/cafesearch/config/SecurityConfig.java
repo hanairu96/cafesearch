@@ -1,5 +1,6 @@
 package com.toy.cafesearch.config;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -45,7 +46,20 @@ public class SecurityConfig {
                     //.failureForwardUrl("/cafe/member/loginFailure")
                     .permitAll()
             )
-            .logout(withDefaults()); //로그아웃 기본 설정 - /logout으로 인증 해제
+            .logout(logout -> logout
+                    .logoutUrl("/logout")
+                    .addLogoutHandler((request, response, authentication) -> {
+                        //세션 무효화하는 로그아웃 핸들러
+                        HttpSession session = request.getSession();
+                        if (session != null){
+                           session.invalidate();
+                        }
+                    })
+                    .logoutSuccessHandler((request, response, authentication) -> {
+                        //로그아웃 성공시 이동할 페이지 지정 핸들러
+                        response.sendRedirect("/cafe/");
+                    })
+            );
 
         return http.build();
     }
