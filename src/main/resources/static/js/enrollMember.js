@@ -115,7 +115,10 @@ const fn_enrollFail = () => {
     }
     //가입 여부 확인
     let apply = confirm("회원가입하시겠습니까? 가입하신 정보는 수정 가능합니다.")
-    if (!apply) {
+    if (apply) {
+        alert("회원가입이 완료 되었습니다.");
+        return true;
+    }else {
         return false;
     }
 }
