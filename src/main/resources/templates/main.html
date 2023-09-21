@@ -4,119 +4,94 @@
     <th:block th:insert="~{/fragment/header::head}"></th:block>
 </head>
 <body>
-<div class="banner" th:style="'background-image: url('+@{/image/cafe01.jpg}+');'">
-    <div class="head-menu">
-        <h3 id="banner-name">CafeSearch</h3>
-        <th:block th:unless="${loginMember} == null">
-            <img id="go-myPage" title="마이페이지" src="/image/icon-user.png" onclick="myPage()"/>
-        </th:block>
-        <th:block th:if="${loginMember} == null">
-            <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
-        </th:block>
-        <th:block th:if="${loginMember} != null">
-            <img id="go-logout" title="로그아웃" src="/image/logout01.png" onclick="logout()"/>
-        </th:block>
+    <div class="banner" th:style="'background-image: url('+@{/image/cafe01.jpg}+');'">
+        <div class="head-menu">
+            <h3 id="banner-name">CafeSearch</h3>
+            <th:block th:unless="${loginMember} == null">
+                <img id="go-myPage" title="마이페이지" src="/image/icon-user.png" onclick="myPage()"/>
+            </th:block>
+            <th:block th:if="${loginMember} == null">
+                <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
+            </th:block>
+            <th:block th:if="${loginMember} != null">
+                <img id="go-logout" title="로그아웃" src="/image/logout01.png" onclick="logout()"/>
+            </th:block>
+        </div>
+        <div class="search">
+            <form class="search-form" action="/cafe/searchResult">
+                <div id="search-box">
+                    <input id="search-input" type="text" name="keyword" placeholder="카페 이름 검색" />
+                    <img src="/image/search01.png"/>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="search">
-        <form class="search-form" action="/cafe/searchResult">
-            <div id="search-box">
-                <input id="search-input" type="text" name="keyword" placeholder="카페 이름 검색" />
-                <img src="/image/search01.png"/>
-            </div>
-        </form>
-    </div>
-</div>
-<style>
-    .banner {
-        height: 500px;
-        width: 100%;
-        top: 0;
-    }
-    .head-menu {
-        /* border: 1px solid white; */
-        width: 100%;
-        display: inline-flex;
-    }
-    #banner-name {
-        color: aliceblue;
-        font-family: Gowun Dodum;
-        font-size: 30px;
-        margin: 0;
-        padding-top: 15px;
-        padding-left: 30px;
-        cursor: pointer;
-    }
-    #go-myPage {
-        /*color: aliceblue;*/
-        /*font-size: 20px;*/
-        /*font-family: Gowun Dodum;*/
-        /*margin: 0;*/
-        filter: invert(100%);
-        position: absolute;
-        right: 110px;
-        padding-top: 20px;
-        height: 40px;
-        width: 40px;
-        cursor: pointer;
-    }
-    #go-login, #go-logout{
-        filter: invert(100%);
-        position: absolute;
-        right: 30px;
-        padding-top: 20px;
-        height: 40px;
-        width: 40px;
-        cursor: pointer;
-    }
-    .search {
-        text-align: center;
-        margin: 150px;
-    }
-    #search-box {
-        margin: 0 auto;
-        height: 40px;
-        width: 500px;
-        background-color: white;
-        border-radius: 50px;
-        display: flex;
-    }
-    #search-input {
-        height: 35px;
-        width: 420px;
-        border: 0px;
-        margin-left: 20px;
-    }
-    #search-box > img {
-        cursor: pointer;
-        filter: invert(40%);
-    }
-</style>
-<div th:replace="~{/fragment/footer::footer}"></div>
-<script>
-    let mainName = document.getElementById("banner-name");
-    mainName.addEventListener("click", e =>{
-        location.assign("/cafe/");
-    });
-
-    document.querySelector("#search-box>img").addEventListener("click", e=>{
-        document.querySelector(".search-form").submit();
-    });
-
-    function login(){
-        location.assign("/cafe/member/loginPage/");
-    }
-
-    function logout(){
-        let check = confirm("로그아웃 하시겠습니까?");
-        if (check){
-            location.replace("/logout");
+    <style>
+        .banner {
+            height: 500px;
+            width: 100%;
+            top: 0;
         }
-    }
-
-    function myPage(){
-
-    }
-
-</script>
+        .head-menu {
+            /* border: 1px solid white; */
+            width: 100%;
+            display: inline-flex;
+        }
+        #banner-name {
+            color: aliceblue;
+            font-family: Gowun Dodum;
+            font-size: 30px;
+            margin: 0;
+            padding-top: 15px;
+            padding-left: 30px;
+            cursor: pointer;
+        }
+        #go-myPage {
+            /*color: aliceblue;*/
+            /*font-size: 20px;*/
+            /*font-family: Gowun Dodum;*/
+            /*margin: 0;*/
+            filter: invert(100%);
+            position: absolute;
+            right: 110px;
+            padding-top: 20px;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+        #go-login, #go-logout{
+            filter: invert(100%);
+            position: absolute;
+            right: 30px;
+            padding-top: 20px;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+        .search {
+            text-align: center;
+            margin: 150px;
+        }
+        #search-box {
+            margin: 0 auto;
+            height: 40px;
+            width: 500px;
+            background-color: white;
+            border-radius: 50px;
+            display: flex;
+        }
+        #search-input {
+            height: 35px;
+            width: 420px;
+            border: 0px;
+            margin-left: 20px;
+        }
+        #search-box > img {
+            cursor: pointer;
+            filter: invert(40%);
+        }
+    </style>
+    <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
+<script src="/js/header.js"></script>
 </html>
