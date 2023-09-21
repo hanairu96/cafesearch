@@ -7,12 +7,14 @@
 <div class="banner" th:style="'background-image: url('+@{/image/cafe02.jpg}+');'">
     <div class="head-menu">
         <h3 id="banner-name">CafeSearch</h3>
-        <h3 id="bestcafe">인기카페</h3>
+        <th:block th:unless="${loginMember} == null">
+            <img id="go-myPage" title="마이페이지" src="/image/icon-user.png" onclick="myPage()"/>
+        </th:block>
         <th:block th:if="${loginMember} == null">
             <img id="go-login" title="로그인" src="/image/login01.png" onclick="login()"/>
         </th:block>
-        <th:block th:unless="${loginMember} == null">
-            <img id="go-myPage" title="마이페이지" src="/image/icon-user.png" onclick="myPage()"/>
+        <th:block th:if="${loginMember} != null">
+            <img id="go-logout" title="로그아웃" src="/image/logout01.png" onclick="logout()"/>
         </th:block>
     </div>
     <div class="search">
@@ -45,17 +47,20 @@
         padding-left: 30px;
         cursor: pointer;
     }
-    #bestcafe {
-        color: aliceblue;
-        font-size: 20px;
-        font-family: Gowun Dodum;
-        margin: 0;
+    #go-myPage {
+        /*color: aliceblue;*/
+        /*font-size: 20px;*/
+        /*font-family: Gowun Dodum;*/
+        /*margin: 0;*/
+        filter: invert(100%);
         position: absolute;
         right: 110px;
-        padding-top: 25px;
+        padding-top: 20px;
+        height: 40px;
+        width: 40px;
         cursor: pointer;
     }
-    #go-login, #go-myPage{
+    #go-login, #go-logout{
         filter: invert(100%);
         position: absolute;
         right: 30px;
@@ -100,6 +105,13 @@
 
     function login(){
         location.assign("/cafe/member/loginPage/");
+    }
+
+    function logout(){
+        let check = confirm("로그아웃 하시겠습니까?");
+        if (check){
+            location.replace("/logout");
+        }
     }
 
     function myPage(){
