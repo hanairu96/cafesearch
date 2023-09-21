@@ -14,6 +14,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
+@SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("/cafe")
 public class CafePageController {
