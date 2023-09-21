@@ -4,7 +4,7 @@
     <th:block th:insert="~{/fragment/header::head}"></th:block>
 </head>
 <body>
-<div class="banner" th:style="'background-image: url('+@{/image/cafe02.jpg}+');'">
+<div class="banner" th:style="'background-image: url('+@{/image/cafe01.jpg}+');'">
     <div class="head-menu">
         <h3 id="banner-name">CafeSearch</h3>
         <th:block th:unless="${loginMember} == null">
@@ -28,7 +28,6 @@
 </div>
 <style>
     .banner {
-        /* background-image: url(@{/image/cafe02.jpg}); */
         height: 500px;
         width: 100%;
         top: 0;
