@@ -3,6 +3,7 @@
 <head>
   <th:block th:insert="~{/fragment/header::head}"></th:block>
   <link rel="stylesheet" type="text/css" href="/css/cafeDetail.css" />
+  <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7u4jonm7xu"></script>
 </head>
 <body>
   <div th:replace="~{/fragment/header::header}"></div>
@@ -15,8 +16,9 @@
     <p id="cafe-address" th:text="*{address}"></p>
   </div>
   <hr>
-  <div id="map">
+  <div class="map">
     <p>지도</p>
+    <div id="map"></div>
   </div>
   <hr>
   <div class="review-div">
