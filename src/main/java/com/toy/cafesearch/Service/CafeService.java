@@ -80,6 +80,8 @@ public class CafeService {
             }
 
             cafe.setAddress(result.getRoadAddress());
+            cafe.setMapx(result.getMapx());
+            cafe.setMapy(result.getMapy());
 
             cafeList.add(cafe);
         }

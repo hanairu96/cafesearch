@@ -20,4 +20,6 @@ public class Cafe {
     private String image;
     private String address;
     private double star;
+    private int mapx;
+    private int mapy;
 }

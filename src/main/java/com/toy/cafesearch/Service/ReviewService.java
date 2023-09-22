@@ -38,7 +38,7 @@ public class ReviewService {
         if(optionalCafe.isEmpty()){
             //첫 리뷰 등록시 카페 데이터도 생성됨
             cafe.setStar(review.getStar());
-            Cafe newCafe = new Cafe(cafe.getCafeName(), cafe.getImage(), cafe.getAddress(), cafe.getStar());
+            Cafe newCafe = new Cafe(cafe.getCafeName(), cafe.getImage(), cafe.getAddress(), cafe.getStar(), cafe.getMapx(), cafe.getMapy());
             cafeRepository.save(newCafe);
         }else {
             //리뷰 추가 등록시 카페의 평균 별점을 수정함
