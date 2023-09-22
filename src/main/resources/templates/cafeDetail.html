@@ -53,5 +53,11 @@
 
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  let mapx = [[${detailCafe.mapx}]] / 10000000;
+  let mapy = [[${detailCafe.mapy}]] / 10000000;
+  /*]]>*/
+</script>
 <script src="/js/cafeDetail.js"></script>
 </html>

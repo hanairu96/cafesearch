@@ -28,9 +28,15 @@ const reviewDelete = (reviewNo)=>{
     }
 }
 
+// 네이버 지도 API
 var mapOptions = {
-    center: new naver.maps.LatLng(37.3595704, 127.105399),
-    zoom: 10
+    center: new naver.maps.LatLng(mapy, mapx),
+    zoom: 16
 }
 
 var map = new naver.maps.Map('map', mapOptions);
+
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(mapy, mapx),
+    map: map
+});
