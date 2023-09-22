@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
     <th:block th:insert="~{/fragment/header::head}"></th:block>
+    <link rel="stylesheet" type="text/css" href="/css/main-header.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
 </head>
 <body>
     <div class="banner" th:style="'background-image: url('+@{/image/cafe01.jpg}+');'">
@@ -26,71 +28,6 @@
             </form>
         </div>
     </div>
-    <style>
-        .banner {
-            height: 500px;
-            width: 100%;
-            top: 0;
-        }
-        .head-menu {
-            /* border: 1px solid white; */
-            width: 100%;
-            display: inline-flex;
-        }
-        #banner-name {
-            color: aliceblue;
-            font-family: Gowun Dodum;
-            font-size: 30px;
-            margin: 0;
-            padding-top: 15px;
-            padding-left: 30px;
-            cursor: pointer;
-        }
-        #go-myPage {
-            /*color: aliceblue;*/
-            /*font-size: 20px;*/
-            /*font-family: Gowun Dodum;*/
-            /*margin: 0;*/
-            filter: invert(100%);
-            position: absolute;
-            right: 110px;
-            padding-top: 20px;
-            height: 40px;
-            width: 40px;
-            cursor: pointer;
-        }
-        #go-login, #go-logout{
-            filter: invert(100%);
-            position: absolute;
-            right: 30px;
-            padding-top: 20px;
-            height: 40px;
-            width: 40px;
-            cursor: pointer;
-        }
-        .search {
-            text-align: center;
-            margin: 150px;
-        }
-        #search-box {
-            margin: 0 auto;
-            height: 40px;
-            width: 500px;
-            background-color: white;
-            border-radius: 50px;
-            display: flex;
-        }
-        #search-input {
-            height: 35px;
-            width: 420px;
-            border: 0px;
-            margin-left: 20px;
-        }
-        #search-box > img {
-            cursor: pointer;
-            filter: invert(40%);
-        }
-    </style>
     <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
 <script src="/js/header.js"></script>

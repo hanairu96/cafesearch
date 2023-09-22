@@ -10,6 +10,9 @@
             href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/main-header.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}" />
     </th:block>
 </head>
 <body th:fragment="header">
@@ -33,69 +36,7 @@
             </th:block>
         </div>
     </div>
-    <style>
-        .banner-head {
-            background-color: rgb(46, 35, 29);
-            height: 80px;
-            width: 100%;
-            top: 0;
-        }
-        .head-menu {
-            /* border: 1px solid white; */
-            width: 100%;
-            display: inline-flex;
-        }
-        #banner-name {
-            color: aliceblue;
-            font-family: Gowun Dodum;
-            font-size: 30px;
-            margin: 0;
-            padding-top: 15px;
-            padding-left: 30px;
-            cursor: pointer;
-        }
-        #go-myPage {
-            /*color: aliceblue;*/
-            /*font-size: 20px;*/
-            /*font-family: Gowun Dodum;*/
-            /*margin: 0;*/
-            filter: invert(100%);
-            position: absolute;
-            right: 110px;
-            padding-top: 20px;
-            height: 40px;
-            width: 40px;
-            cursor: pointer;
-        }
-        #go-login, #go-logout {
-            filter: invert(100%);
-            position: absolute;
-            right: 30px;
-            padding-top: 20px;
-            height: 40px;
-            width: 40px;
-            cursor: pointer;
-        }
-        #search-box {
-            margin-top: 20px;
-            margin-left: 50px;
-            height: 40px;
-            width: 600px;
-            background-color: white;
-            border-radius: 50px;
-            display: flex;
-        }
-        #search-input {
-            height: 35px;
-            width: 520px;
-            border: 0px;
-            margin-left: 20px;
-        }
-        #search-box > img {
-            cursor: pointer;
-            filter: invert(40%);
-        }
-    </style>
+
     <script src="/js/header.js"></script>
 </body>
 </html>

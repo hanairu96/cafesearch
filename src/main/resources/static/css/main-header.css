@@ -1,0 +1,40 @@
+.head-menu {
+    /* border: 1px solid white; */
+    width: 100%;
+    display: inline-flex;
+}
+#banner-name {
+    color: aliceblue;
+    font-family: Gowun Dodum;
+    font-size: 30px;
+    margin: 0;
+    padding-top: 15px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+#go-myPage {
+    /*color: aliceblue;*/
+    /*font-size: 20px;*/
+    /*font-family: Gowun Dodum;*/
+    /*margin: 0;*/
+    filter: invert(100%);
+    position: absolute;
+    right: 110px;
+    padding-top: 20px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+#go-login, #go-logout {
+    filter: invert(100%);
+    position: absolute;
+    right: 30px;
+    padding-top: 20px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+#search-box > img {
+    cursor: pointer;
+    filter: invert(40%);
+}

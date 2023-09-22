@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
   <th:block th:insert="~{/fragment/header::head}"></th:block>
+  <link rel="stylesheet" type="text/css" href="/css/cafeDetail.css" />
 </head>
 <body>
   <div th:replace="~{/fragment/header::header}"></div>
@@ -47,94 +48,6 @@
       </div>
     </div>
   </div>
-
-  <style>
-    #cafe-image{
-      border: 1px solid black;
-      height: 400px;
-      width: 600px;
-      margin: 0 auto;
-      display: block;
-      margin-top: 30px;
-    }
-    #cafe-info{
-      height: 100px;
-      width: 600px;
-      margin: 0 auto;
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-    #cafe-name{
-      font-weight: bold;
-      font-size: 20px;
-    }
-
-    #map{
-      width: 600px;
-      margin: 0 auto;
-    }
-    .review-div{
-      width: 1100px;
-      margin: 0 auto;
-    }
-    #reivew-top{
-      display: flex;
-    }
-    #review-post{
-      margin-left: 20px;
-      cursor: pointer;
-    }
-    .review{
-      display: flex;
-      width: 1000px;
-      margin: 0 auto;
-      margin-top: 30px;
-    }
-    #profile-img{
-      border: 1px solid black;
-      border-radius: 50%;
-      height: 100px;
-      width: 100px;
-      margin: 35px;
-    }
-    #member-id{
-      text-align: center;
-    }
-    #review-change{
-      display: flex;
-      width: 80px;
-      margin: 0 auto;
-      padding: 10px 25px;
-    }
-    #review-change>*{
-      margin-left: 5px;
-      margin-right: 5px;
-      cursor: pointer;
-      width: 29px;
-      border: 0px;
-      background-color: white;
-    }
-    #review-text{
-      border: 1px solid black;
-      height: 220px;
-      width: 700px;
-      padding: 15px;
-    }
-    #review-title{
-      font-weight: bold;
-    }
-    #review-rest{
-      display: flex;
-      margin-top: 10px;
-    }
-    #review-star{
-      font-weight: bold;
-      font-size: 30px;
-    }
-    #review-date{
-      margin-left: 600px;
-    }
-  </style>
 
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>

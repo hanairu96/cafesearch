@@ -1,0 +1,21 @@
+.banner-head {
+    background-color: rgb(46, 35, 29);
+    height: 80px;
+    width: 100%;
+    top: 0;
+}
+#search-box {
+    margin-top: 20px;
+    margin-left: 50px;
+    height: 40px;
+    width: 600px;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+}
+#search-input {
+    height: 35px;
+    width: 520px;
+    border: 0px;
+    margin-left: 20px;
+}

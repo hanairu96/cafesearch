@@ -1,0 +1,57 @@
+/* 입력창 */
+.container{
+    margin: 0 auto;
+    width : 520px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-top: 50px;
+    padding-top: 20px;
+}
+[name=enrollMemberFrm]>div{
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.searchAddr{
+    height: 20px;
+    margin-left: 5px;
+}
+.form-text{
+    color: gray;
+}
+.inputAddr{
+    margin-right: 5px;
+}
+#inputAddress_address{
+    width: 300px;
+}
+/* 가입하기 버튼 */
+#insert{
+    display: flex;
+}
+.d-grid{
+    margin: 0 auto;
+}
+/* 생년월일 */
+.bir_yy,.bir_mm,.bir_dd{
+    /*width:10px;*/
+    display:table-cell;
+}
+.email_ee{
+    width:340px;
+    display:table-cell;
+}
+.bir_mm+.bir_dd, .bir_yy+.bir_mm{
+    padding-left:10px;
+}
+.text-dark{
+    text-align:center;
+    display:block;
+    margin: 0 auto;
+    font-weight: bold;
+}
+/* (필수), (선택) */
+span.obli{
+    color: rgba(103, 103, 194, 0.685);
+    font-size: small;
+}

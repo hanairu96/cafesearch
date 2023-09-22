@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                 .requestMatchers("/image/**").permitAll()
                 .requestMatchers("/js/**").permitAll()
+                .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/static/message/**").permitAll()
                 .requestMatchers("/cafe/").permitAll()
                 .requestMatchers("/cafe/searchResult").permitAll()

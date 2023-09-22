@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
   <th:block th:insert="~{/fragment/header::head}"></th:block>
+  <link rel="stylesheet" type="text/css" href="/css/reviewWrite.css" />
 </head>
 <body>
   <div th:replace="~{/fragment/header::header}"></div>
@@ -38,50 +39,6 @@
       <button type="button" id="cancel" class="customBtn btnStyle" onclick="cancel();">취소</button>
     </div>
   </div>
-  <style>
-    .board>*{
-      margin: 0 auto;
-    }
-    #main-title{
-      text-align: center;
-      margin-top: 20px !important;
-    }
-    .info-table{
-      border-collapse: collapse;
-      width: 700px;
-      margin-top: 20px;
-    }
-    .line-title, .line-content{
-      border: 1px solid black;
-    }
-    .line-title{
-      text-align: center;
-      width: 250px;
-    }
-    .line-content{
-      width: 450px;
-    }
-    #input-title{
-      width: 450px;
-    }
-    #input-content{
-      position: absolute;
-      left: 50%;
-      margin-left: -350px;
-      width: 700px;
-      resize: none;
-      margin-top: 20px;
-    }
-    #buttons{
-      display: flex;
-      margin-top: 200px;
-      margin-left: 60%;
-    }
-    #buttons>button {
-      width: 100px;
-      margin-left: 10px;
-    }
-  </style>
 
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>

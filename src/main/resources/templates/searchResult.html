@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
   <th:block th:insert="~{/fragment/header::head}"></th:block>
+  <link rel="stylesheet" type="text/css" href="/css/searchResult.css" />
 </head>
 <body>
   <div th:replace="~{/fragment/header::header}"></div>
@@ -26,51 +27,6 @@
       <div id="no-result" th:text="'조회된 결과가 없습니다.'"></div>
     </div>
   </div>
-  <style>
-    .result-list > * {
-      margin: 0 auto;
-      font-family: Gowun Dodum;
-    }
-    .results {
-      margin-top: 20px;
-      height: 150px;
-      width: 700px;
-      border: 1px solid gray;
-      display: flex;
-    }
-    .img {
-      background-size: cover;
-      margin: 25px;
-      height: 100px;
-      width: 120px;
-      border: 1px solid black;
-      /* background-image: url(image/icon-coffee.png); */
-    }
-    .select {
-      cursor: pointer;
-    }
-    .info {
-      /* border: 1px solid black; */
-      margin: 0px;
-      padding: 20px;
-    }
-    .info > * {
-      margin: 5px;
-    }
-    .info > input {
-      border: 0px;
-      font-weight: bolder;
-      font-size: 20px;
-      font-family: Gowun Dodum;
-    }
-    .info > p:first-child {
-      font-size: 20px;
-    }
-    #no-result{
-      margin: 0 auto;
-      padding-top: 65px;
-    }
-  </style>
 
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>

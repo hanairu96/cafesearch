@@ -1,0 +1,42 @@
+.board>*{
+    margin: 0 auto;
+}
+#main-title{
+    text-align: center;
+    margin-top: 20px !important;
+}
+.info-table{
+    border-collapse: collapse;
+    width: 700px;
+    margin-top: 20px;
+}
+.line-title, .line-content{
+    border: 1px solid black;
+}
+.line-title{
+    text-align: center;
+    width: 250px;
+}
+.line-content{
+    width: 450px;
+}
+#input-title{
+    width: 450px;
+}
+#input-content{
+    position: absolute;
+    left: 50%;
+    margin-left: -350px;
+    width: 700px;
+    resize: none;
+    margin-top: 20px;
+}
+#buttons{
+    display: flex;
+    margin-top: 200px;
+    margin-left: 60%;
+}
+#buttons>button {
+    width: 100px;
+    margin-left: 10px;
+}

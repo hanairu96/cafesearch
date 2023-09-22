@@ -1,0 +1,27 @@
+.wrapper{
+    margin: 50px;
+}
+.login-form{
+    height: 20px;
+    width: 200px;
+    margin: 5px;
+}
+#error-message{
+    color: red;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+#login>a:hover{
+    color: gray;
+    font-style: italic;
+    transition: 0.3s;
+}
+div#login{
+    border: 1px solid lightgray;
+    width: 450px;
+    height: 350px;
+    text-align: center;
+    margin: 0 auto;
+}

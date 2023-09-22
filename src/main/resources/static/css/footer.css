@@ -1,0 +1,91 @@
+footer {
+    height: 200px;
+    background-color: whitesmoke;
+    margin-top: 20px;
+    padding-top: 0px;
+}
+#rows {
+    display: flex;
+}
+#f-name {
+    color: black;
+    font-size: 30px;
+    padding-left: 80px;
+    padding-top: 20px;
+}
+#infos {
+    padding-left: 100px;
+    padding-top: 20px;
+}
+#infos li {
+    list-style: none;
+}
+.pages {
+    cursor: pointer;
+}
+#rows img {
+    position: absolute;
+    right: 120px;
+    padding-top: 35px;
+}
+#copyright {
+    text-align: center;
+}
+
+*{
+    font-family: "Gowun Dodum";
+}
+
+/*버튼 스타일*/
+.customBtn {
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+    min-width: 80px;
+    margin: 20px;
+}
+.btnStyle {
+    line-height: 30px;
+    padding: 0;
+    border: none;
+    background: #7B52AE;
+    background: linear-gradient(0deg, #7B52AE 0%, #7B52AE 100%);
+}
+.btnStyle:hover {
+    color: #7B52AE;
+    background: transparent;
+    box-shadow:none;
+}
+.btnStyle:before,.btnStyle:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #7B52AE;
+    box-shadow:
+            -1px -1px 5px 0px #fff,
+            7px 7px 20px 0px #0003,
+            4px 4px 5px 0px #0002;
+    transition:400ms ease all;
+}
+.btnStyle:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+.btnStyle:hover:before,.btnStyle:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}

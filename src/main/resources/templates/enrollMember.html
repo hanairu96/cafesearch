@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
   <th:block th:insert="~{/fragment/header::head}"></th:block>
+  <link rel="stylesheet" type="text/css" href="/css/enrollMember.css" />
 </head>
 <body>
   <div th:replace="~{/fragment/header::header}"></div>
@@ -156,132 +157,6 @@
     </div>
     <br>
   </section>
-  <style>
-    body{
-      font-family: "Gowun Dodum";
-    }
-    /* 입력창 */
-    .container{
-      margin: 0 auto;
-      width : 520px;
-      border: 1px solid lightgray;
-      border-radius: 10px;
-      margin-top: 50px;
-      padding-top: 20px;
-    }
-    [name=enrollMemberFrm]>div{
-      margin-top: 25px;
-      margin-left: 20px;
-      margin-right: 20px;
-    }
-    .searchAddr, #crtfcNoCheck{
-      height: 20px;
-      margin-left: 5px;
-    }
-    /*.address{*/
-    /*  margin-right: 5px;*/
-    /*}*/
-    .form-text{
-      color: gray;
-    }
-    .inputAddr{
-      margin-right: 5px;
-    }
-    #inputAddress_address{
-      width: 300px;
-    }
-    /*.btn-group{*/
-    /*  margin-top: 5px!important;*/
-    /*}*/
-    /* 버튼 스타일 */
-    .customBtn {
-      color: #fff;
-      border-radius: 5px;
-      padding: 10px 25px;
-      font-weight: 500;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
-      box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-      7px 7px 20px 0px rgba(0,0,0,.1),
-      4px 4px 5px 0px rgba(0,0,0,.1);
-      outline: none;
-      min-width: 90px;
-      margin: 20px;
-    }
-    .btnStyle {
-      line-height: 40px;
-      padding: 0;
-      border: none;
-      background: #7B52AE;
-      background: linear-gradient(0deg, #7B52AE 0%, #7B52AE 100%);
-    }
-    .btnStyle:hover {
-      color: #7B52AE;
-      background: transparent;
-      box-shadow:none;
-    }
-    .btnStyle:before,.btnStyle:after{
-      content:'';
-      position:absolute;
-      top:0;
-      right:0;
-      height:2px;
-      width:0;
-      background: #7B52AE;
-      box-shadow:
-              -1px -1px 5px 0px #fff,
-              7px 7px 20px 0px #0003,
-              4px 4px 5px 0px #0002;
-      transition:400ms ease all;
-    }
-    .btnStyle:after{
-      right:inherit;
-      top:inherit;
-      left:0;
-      bottom:0;
-    }
-    .btnStyle:hover:before,.btnStyle:hover:after{
-      width:100%;
-      transition:800ms ease all;
-    }
-    /* 중복확인 버튼 */
-    #idCheck{
-      font-size: small;
-    }
-    /* 가입하기 버튼 */
-    #insert{
-      display: flex;
-    }
-    .d-grid{
-      margin: 0 auto;
-    }
-    /* 생년월일 */
-    .bir_yy,.bir_mm,.bir_dd{
-      /*width:10px;*/
-      display:table-cell;
-    }
-    .email_ee{
-      width:340px;
-      display:table-cell;
-    }
-    .bir_mm+.bir_dd, .bir_yy+.bir_mm{
-      padding-left:10px;
-    }
-    .text-dark{
-      text-align:center;
-      display:block;
-      margin: 0 auto;
-      font-weight: bold;
-    }
-    /* (필수), (선택) */
-    span.obli{
-      color: rgba(103, 103, 194, 0.685);
-      font-size: small;
-    }
-  </style>
 
   <div th:replace="~{/fragment/footer::footer}"></div>
 </body>
