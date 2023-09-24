@@ -15,3 +15,45 @@
 - WAS: Apache Tomcat v10.1.12
 - 템플릿 엔진: Thymeleaf
 - 버전 관리: GitHub
+
+## 3. ERD 설계
+<img src="https://github.com/hanairu96/cafesearch/assets/118409554/86ffd19d-4fc2-4ee5-b389-7ae5cfe2aafe"/>
+
+- ERD는 ERDCloud 사이트를 사용했습니다.
+
+## 4. 구현한 기능
+- 회원가입
+- 로그인/로그아웃
+- 스프링 시큐리티 적용
+- 카페 검색(네이버 검색 API)
+- 지도에 카페 위치 표시(네이버 지도 API)
+- 리뷰 작성, 수정, 삭제
+
+## 5. 구현한 기능 설명
+<details>
+  <summary><b>1. 제목</b></summary>
+
+####
+- 내용
+</details>
+
+## 6. 트러블 슈팅
+<details>
+  <summary><b>제목</b></summary>
+
+#### 문제
+- 내용
+#### 해결
+- 내용
+
+<div markdown="1">
+
+```java
+public class Name {
+	private int field;
+}
+```
+
+</div>
+</details>
+
