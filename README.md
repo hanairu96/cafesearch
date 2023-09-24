@@ -31,7 +31,14 @@
 
 ## 5. 구현한 기능 설명
 <details>
-  <summary><b>1. 제목</b></summary>
+  <summary><b>1. Naver API를 통한 지역 검색</b></summary>
+
+####
+- 내용
+</details>
+
+<details>
+  <summary><b>2. Spring Security Config 설정</b></summary>
 
 ####
 - 내용
@@ -39,7 +46,7 @@
 
 ## 6. 트러블 슈팅
 <details>
-  <summary><b>제목</b></summary>
+  <summary><b>1. Entity DBMS 전략 문제</b></summary>
 
 #### 문제
 - 내용
@@ -57,3 +64,22 @@ public class Name {
 </div>
 </details>
 
+<details>
+  <summary><b>2. Ajax에서 put 사용이 안 되는 문제</b></summary>
+
+#### 문제
+- 내용
+#### 해결
+- 내용
+
+</details>
+
+<details>
+  <summary><b>3. JS에서의 Thymeleaf 사용</b></summary>
+
+#### 문제
+- 내용
+#### 해결
+- 내용
+
+</details>
