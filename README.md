@@ -58,3 +58,71 @@
 
 </details>
 
+## 6. 트러블 슈팅
+<details>
+  <summary><b>1. Entity DBMS 전략 문제</b></summary>
+
+#### 문제
+- REIVEW 테이블의 PK인 REVIEW_NO가 NULL일 때 자동으로 값이 들어가게 하려고 함
+- 그래서 Entity 클래스인 Review의 reviewNo 필드에 @GeneratedValue(strategy = GenerationType.IDENTITY)를 붙임
+- 그런데 리뷰를 추가하는 메소드를 실행했더니 NULL을 삽입할 수 없다는 OracleDatabaseException이 발생함
+#### 해결
+- DBMS에 맞는 전략이 아니었기 때문에 예외가 발생하는 것이었음
+- IDENTITY 전략은 시퀀스가 없는 MySQL 같은 DBMS에서 사용함
+- 반면 이 프로젝트에서 사용하는 Oracle DB에서는 SEQUENCE 전략을 사용해야 함
+- 그래서 @GeneratedValue의 전략을 수정하고 @SequenceGenerator도 추가로 작성하니 정상 작동함
+
+<div markdown="1">
+
+```java
+@Entity
+@SequenceGenerator(
+        name = "REVIEW_SEQ_GEN",
+        sequenceName = "REVIEW_SEQ",
+        initialValue = 1,
+        allocationSize = 1
+)
+public class Review {
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "REVIEW_SEQ_GEN"
+    )
+    @Column(name = "review_no")
+    private int reviewNo;
+}
+```
+
+</div>
+</details>
+
+<details>
+  <summary><b>2. Ajax에서 PUT 요청이 안 되는 문제</b></summary>
+
+#### 문제
+- Ajax로 데이터를 서버에 보내서 수정하는 PUT 요청을 했더니 400 에러 발생
+#### 해결
+- 보안 때문에 content-type이 "application/x-www-form-urlencoded"인 경우 GET, POST로만 요청을 보낼 수 있다고 함
+- PUT, DELETE의 경우 application/json, application/xml과 같이 '*/json', '*/xml'으로 contentType을 지정해줘야 함
+- contentType을 JSON으로 지정하고, 보내려는 데이터를 JSON 형태로 만들어주니 해결됨
+
+<div markdown="1">
+
+```javascript
+$.ajax({
+  url: "/cafe/review/",
+  type: "put",
+  data: JSON.stringify(putElements),
+  contentType: "application/json;charset=UTF-8",
+  success: data => {
+    alert("수정되었습니다.");
+    location.replace(refer);
+  },
+  error: e => {
+    alert("수정에 실패하였습니다.");
+  }
+});
+```
+
+</div>
+</details>
