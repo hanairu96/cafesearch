@@ -28,3 +28,33 @@
 - 카페 검색(네이버 검색 API)
 - 지도에 카페 위치 표시(네이버 지도 API)
 - 리뷰 작성, 수정, 삭제
+
+## 5. 구현한 기능 설명
+<details>
+  <summary><b>1. Naver API를 통한 지역 검색</b></summary>
+
+####
+- 검색 요청 및 응답에 사용할 DTO 클래스들을 만들고 RestTemplate을 이용해 Naver API 서버로부터 검색 결과를 받아온다.
+- application.yaml
+  - [Naver Developers](https://developers.naver.com/main/) 애플리케이션 등록 후 Client ID, Client Secret을 받아온다.
+  - application.yaml에 Client ID, Client Secret 및 Naver API의 검색 요청 URL을 작성한다.
+- SearchLocalReq.java
+  - 검색 요청에 사용할 DTO 클래스
+  - [Documents](https://developers.naver.com/docs/serviceapi/search/local/local.md#%EC%A7%80%EC%97%AD)에 적혀 있는 대로 검색시 필요한 파라미터를 설정한다.
+  - 요청할 내용을 Map 형식으로 반환해주는 toMultiValueMap() 메소드를 작성한다.
+- SearchLocalRes.java
+  - Documents에 적혀 있는 대로 응답에 필요한 요소들을 작성한다.
+- NaverClient.java
+  - Client ID, Client Secret 및 검색 요청 URL을 가져오는 변수를 작성한다.
+  - 표현식 기반으로 다른 파일의 값을 가져오는 @Value 어노테이션으로 yaml의 값을 주입한다.
+  - 검색 요청 내용을 Naver API 서버에 보내서 응답 받는 searchLocal(SearchLocalReq searchLocalReq) 메소드를 작성한다.
+    - 호출할 서버 URL과 요청할 내용을 UriComponentsBuilder 클래스의 메소드 파라미터로 설정하여 URI 타입의 객체를 생성한다.
+    - 헤더 값을 설정할 수 있는 HttpHeaders 클래스에 Client-Id와 Client-Secret, 그리고 ContentType을 설정한다.
+    - 헤더를 파라미터로 하여 HttpEntity 타입의 객체를 생성한다.
+    - 응답 DTO 클래스인 SearchLocalRes는 제네릭 타입의 필드를 가지기에 타입 안정성을 위해 ParameterizedTypeReference 클래스로 객체를 생성한다.
+    - 다른 서버와의 통신에 사용되는 RestTemplate 클래스의 exchange() 메소드로 ResponseEntity 타입의 객체를 생성한다.
+    - ResponseEntity의 getBody()로 응답 DTO 클래스인 SearchLocalRes 타입의 객체를 반환한다.
+- 이후 Service 단에서 검색어를 설정하여 searchLocal() 메소드로 결과를 받고 그 결과 객체를 가공하여 사용한다.
+
+</details>
+
