@@ -60,7 +60,77 @@
 
 ## 6. 트러블 슈팅
 <details>
-  <summary><b>1. Entity DBMS 전략 문제</b></summary>
+  <summary><b>1. Spring Security 버전 업으로 인한 변경 문제</b></summary>
+
+#### 문제
+- Spring Boot 3.0 이상의 버전을 사용하면 Spring Security 6.0 이상의 버전을 사용해야 함
+- Spring Security 6.0 이상의 버전에서는 이전 버전에서 사용되던 것들이 deprecated 또는 삭제된 것이 많았음
+  - 이전 버전에서는 WebSecurityConfigurerAdapter 클래스를 상속받고 configure(HttpSecurity http) 메소드를 오버라이드하여 설정해야 했으나 현재 버전에서는 삭제됨
+  - 그리고 and() 메소드를 이용한 메소드 체이닝 방식도 deprecated 됨
+  - authorizeRequests(), antMatchers() 메소드도 deprecated 됨
+#### 해결
+- configure(HttpSecurity http) 메소드 대신 filterChain(HttpSecurity http) 메소드를 사용하고 http.build()를 return 함
+- and() 메소드 대신 함수형으로 코드를 작성함
+- authorizeHttpRequests(), requestMatchers() 메소드를 사용함
+
+<div markdown="1">
+
+```java
+//기존 코드 예시
+@Configuration 
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .and()
+            .authorizeRequests() 
+            .antMatchers("/main").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/loginPage")
+            .loginProcessingUrl("/login")
+            .defaultSuccessUrl("/main")
+            .and()
+            .logout();
+    }
+}
+```
+
+</div>
+<div markdown="1">
+
+```java
+//변경된 코드 예시
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf((csrf) -> csrf.disable())
+            .authorizeHttpRequests(request -> request
+                .requestMatchers("/main").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin(login -> login
+                .loginPage("/loginPage")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/main")
+            )
+            .logout(withDefaults());;
+        return http.build();
+    }
+}
+```
+
+</div>
+</details>
+
+<details>
+  <summary><b>2. Entity DBMS 전략 문제</b></summary>
 
 #### 문제
 - REIVEW 테이블의 PK인 REVIEW_NO가 NULL일 때 자동으로 값이 들어가게 하려고 함
@@ -97,7 +167,7 @@ public class Review {
 </details>
 
 <details>
-  <summary><b>2. Ajax에서 PUT 요청이 안 되는 문제</b></summary>
+  <summary><b>3. Ajax에서 PUT 요청이 안 되는 문제</b></summary>
 
 #### 문제
 - Ajax로 데이터를 서버에 보내서 수정하는 PUT 요청을 했더니 400 에러 발생
