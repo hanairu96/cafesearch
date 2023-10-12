@@ -38,13 +38,13 @@
 - application.yaml
   - [Naver Developers](https://developers.naver.com/main/) 애플리케이션 등록 후 Client ID, Client Secret을 받아온다.
   - application.yaml에 Client ID, Client Secret 및 Naver API의 검색 요청 URL을 작성한다.
-- SearchLocalReq.java
+- [SearchLocalReq.java](https://github.com/hanairu96/cafesearch/blob/master/src/main/java/com/toy/cafesearch/naver/dto/SearchLocalReq.java)
   - 검색 요청에 사용할 DTO 클래스
   - [Documents](https://developers.naver.com/docs/serviceapi/search/local/local.md#%EC%A7%80%EC%97%AD)에 적혀 있는 대로 검색시 필요한 파라미터를 설정한다.
   - 요청할 내용을 Map 형식으로 반환해주는 toMultiValueMap() 메소드를 작성한다.
-- SearchLocalRes.java
+- [SearchLocalRes.java](https://github.com/hanairu96/cafesearch/blob/master/src/main/java/com/toy/cafesearch/naver/dto/SearchLocalRes.java)
   - Documents에 적혀 있는 대로 응답에 필요한 요소들을 작성한다.
-- NaverClient.java
+- [NaverClient.java](https://github.com/hanairu96/cafesearch/blob/master/src/main/java/com/toy/cafesearch/naver/NaverClient.java)
   - Client ID, Client Secret 및 검색 요청 URL을 가져오는 변수를 작성한다.
   - 표현식 기반으로 다른 파일의 값을 가져오는 @Value 어노테이션으로 yaml의 값을 주입한다.
   - 검색 요청 내용을 Naver API 서버에 보내서 응답 받는 searchLocal(SearchLocalReq searchLocalReq) 메소드를 작성한다.
