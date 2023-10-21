@@ -45,6 +45,9 @@ public class SecurityConfig {
                     //.failureForwardUrl("/cafe/member/loginFailure")
                     .permitAll()
             )
+            .oauth2Login(login -> login
+                    .loginPage("/cafe/member/loginPage/")
+            )
             .logout(logout -> logout
                     .logoutUrl("/logout")
                     .addLogoutHandler((request, response, authentication) -> {
