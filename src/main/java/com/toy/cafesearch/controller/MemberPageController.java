@@ -2,6 +2,7 @@ package com.toy.cafesearch.controller;
 
 import com.toy.cafesearch.Service.MemberService;
 import com.toy.cafesearch.dto.Member;
+import com.toy.cafesearch.oauth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -64,8 +65,8 @@ public class MemberPageController {
 
     @GetMapping("/loginSuccess")
     public String loginSuccess(Model model){
-        Object member = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("loginMember", (Member)member);
+        Object member = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //PrincipalDetails
+        model.addAttribute("loginMember", ((PrincipalDetails)member).getMember());
         log.info("loginMember: {}", model.getAttribute("loginMember"));
         return "redirect:/cafe/";
     }
