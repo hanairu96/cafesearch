@@ -29,6 +29,7 @@ public class Member {
     private String address;
 
     private String provider; //google
+    @Column(name = "provider_id")
     private String providerId; //sub
     private String role; //ROLE_USER
 
