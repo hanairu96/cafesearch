@@ -1,4 +1,4 @@
-package com.toy.cafesearch.Service;
+package com.toy.cafesearch.oauth;
 
 import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.repository.MemberRepository;
@@ -20,6 +20,6 @@ public class PrincipalDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Member> optionalMember = memberRepository.findById(username);
         Member member = optionalMember.orElseThrow(()-> new UsernameNotFoundException("존재하지 않는 회원입니다."));
-        return member;
+        return new PrincipalDetails(member);
     }
 }
