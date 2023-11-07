@@ -54,6 +54,7 @@ public class SecurityConfig {
                     .loginPage("/cafe/member/loginPage/")
                     .userInfoEndpoint(point -> point
                             .userService(principalOauth2UserService))
+                    .defaultSuccessUrl("/cafe/member/loginSuccess")
             )
             .logout(logout -> logout
                     .logoutUrl("/logout")
