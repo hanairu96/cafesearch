@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
-    public final BCryptPasswordEncoder bCryptPasswordEncoder;
+    //public final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final MemberRepository memberRepository;
 
     @Override
@@ -27,19 +27,20 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         //이미 있으면 그냥 로그인
         
         //여기서 데이터 받아서 멤버 객체 생성
-        String provider = userRequest.getClientRegistration().getClientId(); //google
+        String provider = userRequest.getClientRegistration().getRegistrationId(); //google
         String providerId = oauth2User.getAttribute("sub");
         String role = "ROLE_USER";
 
         String memberId = oauth2User.getAttribute("email");
-        String password = bCryptPasswordEncoder.encode("1111"); //임의의 비밀번호
+        String password = "1111"; //bCryptPasswordEncoder.encode("1111"); //임의의 비밀번호
         String name = oauth2User.getAttribute("name");
 
         //이미 있는 회원인지 확인
         Optional<Member> memberEntity = memberRepository.findById(memberId);
+        Member oauthMember = null;
         //없는 회원이면 자동 회원가입
         if(memberEntity.isEmpty()){
-            Member.builder()
+            oauthMember = Member.builder()
                     .memberId(memberId)
                     .password(password)
                     .name(name)
@@ -53,9 +54,11 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .providerId(providerId)
                     .role(role)
                     .build();
-            memberRepository.save(memberEntity.get());
+            memberRepository.save(oauthMember);
+        }else {
+            oauthMember = memberEntity.get();
         }
 
-        return new PrincipalDetails(memberEntity.get(), oauth2User.getAttributes());
+        return new PrincipalDetails(oauthMember, oauth2User.getAttributes());
     }
 }
