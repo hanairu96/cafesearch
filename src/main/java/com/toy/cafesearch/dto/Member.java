@@ -28,4 +28,8 @@ public class Member {
     private String email;
     private String address;
 
+    private String provider; //google
+    private String providerId; //sub
+    private String role; //ROLE_USER
+
 }
