@@ -21,7 +21,7 @@
         <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
           <span id="error-message" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
         </div>
-        <a href="/oauth2/authorization/google">구글 로그인</a><br>
+        <a href="/oauth2/authorization/google"><img class="social-login" src="/image/google-login.png"></a><br>
         <a href="/cafe/member/enrollMember">회원가입</a>
       </div>
     </div>
