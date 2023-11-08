@@ -2,6 +2,7 @@ package com.toy.cafesearch.oauth;
 
 import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.oauth.provider.GoogleUserInfo;
+import com.toy.cafesearch.oauth.provider.NaverUserInfo;
 import com.toy.cafesearch.oauth.provider.OAuth2UserInfo;
 import com.toy.cafesearch.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -29,10 +31,12 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         OAuth2UserInfo oAuth2UserInfo = null;
         if (userRequest.getClientRegistration().getRegistrationId().equals("google")){
             oAuth2UserInfo = new GoogleUserInfo(oauth2User.getAttributes());
+        }else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")){
+            oAuth2UserInfo = new NaverUserInfo((Map)oauth2User.getAttributes().get("response"));
         }
 
         //여기서 데이터 받아서 멤버 객체 생성
-        String provider = oAuth2UserInfo.getProvider(); //google
+        String provider = oAuth2UserInfo.getProvider(); //google, naver
         String providerId = oAuth2UserInfo.getProviderId();
         String role = "ROLE_USER";
 
