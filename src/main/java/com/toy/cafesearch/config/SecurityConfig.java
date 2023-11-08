@@ -2,6 +2,7 @@ package com.toy.cafesearch.config;
 
 import com.toy.cafesearch.oauth.PrincipalOauth2UserService;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,17 +15,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity //스프링 시큐리티 필터가 스프링 필터체인에 등록됨
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true) //secured 어노테이션 활성화, preAuthorize 어노테이션 활성화
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private PrincipalOauth2UserService principalOauth2UserService;
+    private final PrincipalOauth2UserService principalOauth2UserService;
+    public final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //해당 메소드의 리턴되는 오브젝트를 loC로 등록해줌
-    @Bean
-    public BCryptPasswordEncoder encodePwd() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.disable())

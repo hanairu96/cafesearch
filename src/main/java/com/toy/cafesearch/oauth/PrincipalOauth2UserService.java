@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
-    //public final BCryptPasswordEncoder bCryptPasswordEncoder;
+    public final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final MemberRepository memberRepository;
 
     @Override
@@ -32,7 +32,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         String role = "ROLE_USER";
 
         String memberId = oauth2User.getAttribute("email");
-        String password = "1111"; //bCryptPasswordEncoder.encode("1111"); //임의의 비밀번호
+        String password = bCryptPasswordEncoder.encode("1111"); //임의의 비밀번호
         String name = oauth2User.getAttribute("name");
 
         //이미 있는 회원인지 확인
