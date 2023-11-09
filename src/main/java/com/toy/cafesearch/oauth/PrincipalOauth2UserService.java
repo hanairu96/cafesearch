@@ -2,6 +2,7 @@ package com.toy.cafesearch.oauth;
 
 import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.oauth.provider.GoogleUserInfo;
+import com.toy.cafesearch.oauth.provider.KakaoUserInfo;
 import com.toy.cafesearch.oauth.provider.NaverUserInfo;
 import com.toy.cafesearch.oauth.provider.OAuth2UserInfo;
 import com.toy.cafesearch.repository.MemberRepository;
@@ -33,10 +34,12 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
             oAuth2UserInfo = new GoogleUserInfo(oauth2User.getAttributes());
         }else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")){
             oAuth2UserInfo = new NaverUserInfo((Map)oauth2User.getAttributes().get("response"));
+        }else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
+            oAuth2UserInfo = new KakaoUserInfo(oauth2User.getAttributes());
         }
 
         //여기서 데이터 받아서 멤버 객체 생성
-        String provider = oAuth2UserInfo.getProvider(); //google, naver
+        String provider = oAuth2UserInfo.getProvider(); //google, naver, kakao
         String providerId = oAuth2UserInfo.getProviderId();
         String role = "ROLE_USER";
 
