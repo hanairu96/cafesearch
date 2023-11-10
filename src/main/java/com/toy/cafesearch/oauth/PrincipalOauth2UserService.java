@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
@@ -53,8 +54,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         //이미 있는 회원인지 확인
         Optional<Member> memberEntity = memberRepository.findById(memberId);
         Member oauthMember = null;
+
         //없는 회원이면 자동 회원가입
-        if(memberEntity.isEmpty()) {
+        if(memberEntity.isEmpty() && provider!="naver") { //네이버가 아닐 때
             oauthMember = Member.builder()
                     .memberId(memberId)
                     .password(password)
@@ -70,7 +72,29 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .role(role)
                     .build();
             memberRepository.save(oauthMember);
-        }else {
+        }else if (memberEntity.isEmpty() && provider=="naver") { //네이버일 때
+            NaverUserInfo naverUserInfo = (NaverUserInfo)oAuth2UserInfo;
+            String nickname = naverUserInfo.getNickname();
+            Date birth = naverUserInfo.getBirth();
+            String phone = naverUserInfo.getPhone();
+            char gender = naverUserInfo.getGender();
+
+            oauthMember = Member.builder()
+                    .memberId(memberId)
+                    .password(password)
+                    .name(name)
+                    .nickname(nickname)
+                    .birth(birth)
+                    .phone(phone)
+                    .gender(gender)
+                    .email(memberId)
+                    .address(null)
+                    .provider(provider)
+                    .providerId(providerId)
+                    .role(role)
+                    .build();
+            memberRepository.save(oauthMember);
+        }else { //이미 있는 회원일 때
             oauthMember = memberEntity.get();
         }
 
