@@ -17,16 +17,17 @@ public class KakaoUserInfo implements OAuth2UserInfo{
 
     @Override
     public String getProviderId() {
-        return (String) attributes.get("id");
+        return Long.toString((long)attributes.get("id"));
     }
 
     @Override
     public String getIdEmail() {
-        return (String) attributes.get("email");
+        //attributes의 kakao_account 안에 있는 email을 가져옴
+        return (String) ((Map)attributes.get("kakao_account")).get("email");
     }
 
     @Override
     public String getName() {
-        return (String) attributes.get("name");
+        return getIdEmail().split("@")[0]; //이메일의 @ 앞에 있는 아이디를 임시 이름으로 사용
     }
 }

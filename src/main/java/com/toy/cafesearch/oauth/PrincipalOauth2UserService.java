@@ -7,6 +7,7 @@ import com.toy.cafesearch.oauth.provider.NaverUserInfo;
 import com.toy.cafesearch.oauth.provider.OAuth2UserInfo;
 import com.toy.cafesearch.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
     public final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -37,6 +39,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         }else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
             oAuth2UserInfo = new KakaoUserInfo(oauth2User.getAttributes());
         }
+        log.info("회원 정보: {}", oauth2User.getAttributes());
 
         //여기서 데이터 받아서 멤버 객체 생성
         String provider = oAuth2UserInfo.getProvider(); //google, naver, kakao
@@ -51,7 +54,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         Optional<Member> memberEntity = memberRepository.findById(memberId);
         Member oauthMember = null;
         //없는 회원이면 자동 회원가입
-        if(memberEntity.isEmpty()){
+        if(memberEntity.isEmpty()) {
             oauthMember = Member.builder()
                     .memberId(memberId)
                     .password(password)
