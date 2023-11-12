@@ -1,8 +1,6 @@
 package com.toy.cafesearch.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +23,7 @@ public class Member {
     private String name;
     @Column(length = 50)
     private String nickname;
+    @Temporal(TemporalType.DATE)
     private Date birth;
     @Column(length = 20)
     private String phone;
