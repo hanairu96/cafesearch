@@ -33,6 +33,8 @@ public class Review {
     private String cafeName;
     @Column(name = "member_id")
     private String memberId;
+    @Column(name = "member_nickname")
+    private String memberNickname;
     private String title;
     private int star;
     @Column(name = "review_date")
