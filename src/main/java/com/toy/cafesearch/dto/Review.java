@@ -29,15 +29,17 @@ public class Review {
     )  //기본키를 자동으로 1씩 증가시킴
     @Column(name = "review_no")
     private int reviewNo;
-    @Column(name = "cafe_name")
+    @Column(name = "cafe_name", length = 100)
     private String cafeName;
-    @Column(name = "member_id")
+    @Column(name = "member_id", length = 50)
     private String memberId;
-    @Column(name = "member_nickname")
+    @Column(name = "member_nickname", length = 50)
     private String memberNickname;
+    @Column(length = 100)
     private String title;
     private int star;
     @Column(name = "review_date")
     private Date reviewDate;
+    @Column(length = 2000)
     private String content;
 }

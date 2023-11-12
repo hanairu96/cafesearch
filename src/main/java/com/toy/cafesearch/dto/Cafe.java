@@ -15,9 +15,11 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 public class Cafe {
     @Id
-    @Column(name = "cafe_name")
+    @Column(name = "cafe_name", length = 100)
     private String cafeName;
+    @Column(length = 1000)
     private String image;
+    @Column(length = 200)
     private String address;
     private double star;
     private int mapx;
