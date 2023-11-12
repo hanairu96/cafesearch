@@ -5,6 +5,7 @@ import com.toy.cafesearch.Service.ReviewService;
 import com.toy.cafesearch.dto.Cafe;
 import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.dto.Review;
+import com.toy.cafesearch.oauth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -50,7 +51,7 @@ public class ReviewApiController {
 
         Review review = Review.builder()
                 .cafeName(cafeName)
-                .memberId(((Member)loginMember).getMemberId())
+                .memberId(((PrincipalDetails)loginMember).getMember().getMemberId())
                 .title(title)
                 .star(star)
                 .reviewDate(Date.valueOf(localDate))
@@ -80,7 +81,7 @@ public class ReviewApiController {
 
         Review updateReview = Review.builder()
                 .cafeName(cafeName)
-                .memberId(((Member)loginMember).getMemberId())
+                .memberId(((PrincipalDetails)loginMember).getMember().getMemberId())
                 .title(title)
                 .star(star)
                 .reviewDate(Date.valueOf(localDate))
