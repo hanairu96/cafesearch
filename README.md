@@ -17,13 +17,14 @@
 - 버전 관리: GitHub
 
 ## 3. ERD 설계
-<img src="https://github.com/hanairu96/cafesearch/assets/118409554/86ffd19d-4fc2-4ee5-b389-7ae5cfe2aafe"/>
+<img src="https://github.com/hanairu96/cafesearch/assets/118409554/8f11054a-3eaa-458f-86b6-46fda276a8f6"/>
 
 - ERD는 ERDCloud 사이트를 사용했습니다.
 
 ## 4. 구현한 기능
 - 회원가입
 - 로그인/로그아웃
+- OAuth 소셜 로그인(구글, 네이버, 카카오)
 - 스프링 시큐리티 적용
 - 카페 검색(네이버 검색 API)
 - 지도에 카페 위치 표시(네이버 지도 API)
