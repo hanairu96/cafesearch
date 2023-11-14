@@ -83,14 +83,13 @@ const fn_enrollFail = () => {
     //년도 입력
     const yy = $("#yy").val().trim();
     const pattern = /^(19|20)\d{2}$/; //1900~2099년만
-    if (!pattern.test(yy)) { //연도 입력이 잘못 되었으면
+    if (yy == "" || pattern.test(yy)) {
+        $("span#checkYear>small").text(" ");
+    } else { //연도 입력이 잘못 되었으면
         alert("연도를 확인해주세요.");
         $("span#checkYear>small").text("올바른 연도를 입력해주세요.").css("color", "red");
         $("#yy").focus();
-        return false;
-    } else {
-        $("span#checkYear>small").text(" ");
-    }
+        return false;    }
     //핸드폰 번호 입력
     const inputPhone = $("#inputPhone").val().trim();
     const phoneReg = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/; //핸드폰 번호(- 없음)

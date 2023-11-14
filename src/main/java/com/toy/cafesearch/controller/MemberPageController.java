@@ -43,16 +43,21 @@ public class MemberPageController {
     public String enrollMemberEnd(Member m, String year, String month, String day,
                                   String inputAddressPostcode, String inputAddressAddress, String inputAddressDetailAddress) throws ParseException {
 
-        //문자열로 받아온 생년월일을 Date 타입으로 변환
-        String dateStr = year + "/" + month + "/" + day;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd");
-        Date date = formatter.parse(dateStr);
+        System.out.println(year);
+        System.out.println(inputAddressAddress);
+        if (!year.isEmpty()){
+            //문자열로 받아온 생년월일을 Date 타입으로 변환
+            String dateStr = year + "/" + month + "/" + day;
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd");
+            Date date = formatter.parse(dateStr);
+            m.setBirth(date);
+        }
 
-        //주소를 하나로 합침
-        String address = "(" + inputAddressPostcode + ")" + inputAddressAddress + ", " + inputAddressDetailAddress;
-
-        m.setBirth(date);
-        m.setAddress(address);
+        if (!inputAddressAddress.isEmpty()){
+            //주소를 하나로 합침
+            String address = "(" + inputAddressPostcode + ")" + inputAddressAddress + ", " + inputAddressDetailAddress;
+            m.setAddress(address);
+        }
 
         //패스워드 암호화
         String encodePassword = passwordEncoder.encode(m.getPassword());

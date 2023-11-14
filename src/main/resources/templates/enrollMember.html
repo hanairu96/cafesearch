@@ -39,12 +39,12 @@
                  placeholder="이름을 입력해주세요." required>
         </div>
         <div class ="bir_wrap">
-          <label class="form-label">생년월일<span class="obli">(필수)</span></label>
+          <label class="form-label">생년월일<span class="obli">(선택)</span></label>
           <span class="check" id="checkYear"><small></small></span>
           <div class="bir_yy">
             <span class="ps_box">
                 <input type="text" class="form-control" name="year" id="yy"
-                       placeholder="연도(4글자)" maxlength="4" required>
+                       placeholder="연도(4글자)" maxlength="4">
             </span>
           </div>
           <div class="bir_mm">
@@ -102,17 +102,20 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="inputPhone" class="form-label">핸드폰 번호<span class="obli">(필수)</span></label>
+          <label for="inputPhone" class="form-label">핸드폰 번호<span class="obli">(선택)</span></label>
           <span class="check" id="checkPhone"><small></small></span><br>
           <input type="text" class="form-control" name="phone" id="inputPhone"
-                 placeholder="번호를 입력해주세요." maxlength="11" required>
+                 placeholder="번호를 입력해주세요." maxlength="11">
           <small class="emailHelp form-text">'-'없이 입력해주세요.</small>
         </div>
         <div class="form-group">
-          <label class="form-label">성별<span class="obli">(필수)</span></label>
+          <label class="form-label">성별<span class="obli">(선택)</span></label>
           <div class="btn-group" data-toggle="buttons">
+            <label for="gender0" class="btn btn-outline-secondary">
+              <input type="radio" class="radio" name="gender" id="gender0" value=" " checked> 미선택
+            </label>
             <label for="gender1" class="btn btn-outline-secondary">
-              <input type="radio" class="radio" name="gender" id="gender1" value="M" checked> 남
+              <input type="radio" class="radio" name="gender" id="gender1" value="M"> 남
             </label>
             <label for="gender2" class="btn btn-outline-secondary">
               <input type="radio" class="radio" name="gender" id="gender2" value="F"> 여
