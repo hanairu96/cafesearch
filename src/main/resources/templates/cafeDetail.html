@@ -40,7 +40,7 @@
         <div>
           <div id="review-text">
             <p id="review-title" th:text="${review.title}"></p>
-            <p id="review-content" th:text="${review.content}"></p>
+            <textarea id="review-content" readonly><th:block th:text="${review.content}"></th:block></textarea>
           </div>
           <div id="review-rest">
             <div class="review-star" th:if="${review.star==5}">★★★★★</div>

@@ -79,6 +79,12 @@
 #review-title{
     font-weight: bold;
 }
+#review-content{
+    width: 680px;
+    height: 150px;
+    resize: none;
+    border: 0px;
+}
 #review-rest{
     display: flex;
     margin-top: 10px;
