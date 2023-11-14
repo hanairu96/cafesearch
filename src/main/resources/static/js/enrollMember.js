@@ -80,6 +80,17 @@ const fn_enrollFail = () => {
     } else {
         $("span#checkName>small").text(" ");
     }
+    //닉네임 정규식 표현
+    const inputNickname = $("#inputNickname").val().trim();
+    const nicknameReg = /^[가-힣a-zA-Z][가-힣a-zA-Z0-9]+$/;
+    if (!nicknameReg.test(inputNickname)) { //닉네임이 잘못됐으면
+        alert("닉네임을 확인해주세요.");
+        $("span#checkNickname>small").text("올바른 닉네임을 입력해주세요.").css("color", "red");
+        $("#inputNickname").focus();
+        return false;
+    } else {
+        $("span#checkNickname>small").text(" ");
+    }
     //년도 입력
     const yy = $("#yy").val().trim();
     const pattern = /^(19|20)\d{2}$/; //1900~2099년만
