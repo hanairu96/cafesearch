@@ -43,8 +43,6 @@ public class MemberPageController {
     public String enrollMemberEnd(Member m, String year, String month, String day,
                                   String inputAddressPostcode, String inputAddressAddress, String inputAddressDetailAddress) throws ParseException {
 
-        System.out.println(year);
-        System.out.println(inputAddressAddress);
         if (!year.isEmpty()){
             //문자열로 받아온 생년월일을 Date 타입으로 변환
             String dateStr = year + "/" + month + "/" + day;
