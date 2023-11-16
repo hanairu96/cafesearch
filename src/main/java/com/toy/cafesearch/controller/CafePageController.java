@@ -45,7 +45,6 @@ public class CafePageController {
                                    @RequestParam String name){
 
         Cafe detailCafe = cafeService.cafeResult(query, Integer.parseInt(index));
-//        Cafe detailCafe = new Cafe(name, image, address, star);
         if (!cafeService.findByCafeName(name).isEmpty()){
             detailCafe = cafeService.findByCafeName(name).get();
         }

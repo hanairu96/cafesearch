@@ -3,7 +3,6 @@ package com.toy.cafesearch.controller;
 import com.toy.cafesearch.Service.CafeService;
 import com.toy.cafesearch.Service.ReviewService;
 import com.toy.cafesearch.dto.Cafe;
-import com.toy.cafesearch.dto.Member;
 import com.toy.cafesearch.dto.Review;
 import com.toy.cafesearch.oauth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
