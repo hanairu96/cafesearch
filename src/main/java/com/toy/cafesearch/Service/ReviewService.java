@@ -32,8 +32,8 @@ public class ReviewService {
         return review;
     }
 
-    public Optional<Review> findByMemberId(String memberId){
-        Optional<Review> review = reviewRepository.findByMemberId(memberId);
+    public List<Review> findByMemberId(String memberId){
+        List<Review> review = reviewRepository.findByMemberId(memberId);
         return review;
     }
 
