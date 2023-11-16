@@ -4,7 +4,7 @@ import com.toy.cafesearch.Service.MemberService;
 import com.toy.cafesearch.dto.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +18,7 @@ public class MemberApiController {
 
     private final MemberService memberService;
 
-    @PostMapping("/idDuplicateCheck")
+    @GetMapping("/idDuplicateCheck")
     public String idDuplicateCheck(String inputId){
 
         Optional<Member> member = memberService.findMemberById(inputId);

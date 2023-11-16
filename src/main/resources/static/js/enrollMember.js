@@ -4,7 +4,6 @@ $("#inputId").keyup(e=>{
     $.ajax({
         url:"/cafe/member/idDuplicateCheck",
         data: {inputId: inputId},
-        type: "post",
         success:data=>{
             console.log(data);
             if(!$.isEmptyObject(data)){ //중복된 아이디
