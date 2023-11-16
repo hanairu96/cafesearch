@@ -3,8 +3,18 @@ let urlParams = url.searchParams; //URL의 파라미터들
 let query = urlParams.get("query");
 let index = urlParams.get("index");
 
-const reviewPost = (cafeId, cafeName)=>{
-    location.assign("/cafe/reviewWrite?index="+index+"&query="+query+"&id="+cafeId+"&name="+cafeName);
+const reviewPost = (cafeId, cafeName, loginMember)=>{
+    $.ajax({
+        url: "/cafe/review/idDuplicateCheck",
+        data: {inputId: loginMember},
+        success: data => {
+            if(!$.isEmptyObject(data)) { //존재하는 아이디
+                alert("이미 등록한 리뷰가 존재합니다.");
+            }else {
+                location.assign("/cafe/reviewWrite?index="+index+"&query="+query+"&id="+cafeId+"&name="+cafeName);
+            }
+        }
+    });
 }
 
 const reviewUpdate = (reviewNo)=>{
