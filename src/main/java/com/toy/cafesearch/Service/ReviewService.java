@@ -32,6 +32,11 @@ public class ReviewService {
         return review;
     }
 
+    public Optional<Review> findByMemberId(String memberId){
+        Optional<Review> review = reviewRepository.findByMemberId(memberId);
+        return review;
+    }
+
     @Transactional
     public void saveReview(Review review, Cafe cafe){
         Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeId());

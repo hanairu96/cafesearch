@@ -104,4 +104,19 @@ public class ReviewApiController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @GetMapping("/idDuplicateCheck")
+    public String idDuplicateCheck(String inputId){
+
+        Optional<Review> review = reviewService.findByMemberId(inputId);
+        String memberId = "";
+        if (review.isEmpty()){
+            memberId = null;
+        }else {
+            memberId = review.get().getMemberId();
+        }
+
+        log.info("id: {}",memberId);
+
+        return memberId;
+    }
 }
