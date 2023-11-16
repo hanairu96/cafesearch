@@ -105,18 +105,26 @@ public class ReviewApiController {
     }
 
     @GetMapping("/idDuplicateCheck")
-    public String idDuplicateCheck(String inputId){
+    public String idDuplicateCheck(@RequestParam(value = "checkElements[]") List<String> checkElements){
 
-        Optional<Review> review = reviewService.findByMemberId(inputId);
-        String memberId = "";
-        if (review.isEmpty()){
-            memberId = null;
+        String cafeId = checkElements.get(0);
+        String loginMember = checkElements.get(1);
+        log.info("cafeId: {}", cafeId);
+        log.info("loginMember: {}", loginMember);
+
+        List<Review> reviewsByCafe = reviewService.findAllByCafeId(cafeId);
+        List<Review> reviewsByMember = reviewService.findByMemberId(loginMember);
+        reviewsByCafe.retainAll(reviewsByMember); //두 리스트를 비교하여 중복되는 요소만 남김
+
+        String duplicateId = "";
+        if (reviewsByCafe.isEmpty()){ //중복되는 것이 없다면
+            duplicateId = null;
         }else {
-            memberId = review.get().getMemberId();
+            duplicateId = loginMember;
         }
 
-        log.info("id: {}",memberId);
+        log.info("duplicateId: {}", duplicateId);
 
-        return memberId;
+        return duplicateId;
     }
 }

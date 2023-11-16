@@ -4,11 +4,12 @@ let query = urlParams.get("query");
 let index = urlParams.get("index");
 
 const reviewPost = (cafeId, cafeName, loginMember)=>{
+    let checkElements = [cafeId, loginMember];
     $.ajax({
         url: "/cafe/review/idDuplicateCheck",
-        data: {inputId: loginMember},
+        data: {checkElements: checkElements},
         success: data => {
-            if(!$.isEmptyObject(data)) { //존재하는 아이디
+            if(!$.isEmptyObject(data)) { //존재하는 아이디면
                 alert("이미 등록한 리뷰가 존재합니다.");
             }else {
                 location.assign("/cafe/reviewWrite?index="+index+"&query="+query+"&id="+cafeId+"&name="+cafeName);
