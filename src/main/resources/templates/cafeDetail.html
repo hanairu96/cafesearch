@@ -24,7 +24,7 @@
   <div class="review-div">
     <div id="reivew-top">
       <p id="title-text" th:text="'리뷰('+${#lists.size(reviews)}+')'"></p>
-      <p th:if="${not #strings.isEmpty(loginMember)}" id="review-post" th:onclick="reviewPost([[${detailCafe.cafeName}]]);">작성하기</p>
+      <p th:if="${not #strings.isEmpty(loginMember)}" id="review-post" th:onclick="reviewPost([[${detailCafe.cafeId}]], [[${detailCafe.cafeName}]]);">작성하기</p>
     </div>
 
     <div class="review-list">

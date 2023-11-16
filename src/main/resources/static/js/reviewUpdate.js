@@ -3,6 +3,7 @@ const updateEnd = ()=>{
         alert("제목과 내용을 입력하세요.");
     }else {
         let title = $("#input-title").val();
+        let cafeId = $("#cafe-id").val();
         let cafeName = $("#cafe-name").text();
         let star = $("#select-star").val();
         let content = $("#input-content").val();
@@ -10,7 +11,7 @@ const updateEnd = ()=>{
         let query = $("#query").val();
         let index = $("#index").val();
 
-        let putElements = [title, cafeName, star, content, query, index];
+        let putElements = [title, cafeId, cafeName, star, content, query, index];
         let refer = document.referrer; //이전 주소인 카페 상세 페이지
 
         let elements = JSON.stringify(putElements);

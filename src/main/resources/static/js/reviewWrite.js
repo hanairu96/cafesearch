@@ -3,6 +3,7 @@ const enrollEnd = ()=>{
         alert("제목과 내용을 입력하세요.");
     }else {
         let title = $("#input-title").val();
+        let cafeId = $("#cafe-id").val();
         let cafeName = $("#cafe-name").text();
         let star = $("#select-star").val();
         let content = $("#input-content").val();
@@ -10,7 +11,7 @@ const enrollEnd = ()=>{
         let query = $("#query").val();
         let index = $("#index").val();
 
-        let postElements = [title, cafeName, star, content, query, index];
+        let postElements = [title, cafeId, cafeName, star, content, query, index];
         let refer = document.referrer; //이전 주소인 카페 상세 페이지
 
         $.ajax({

@@ -42,13 +42,18 @@ public class CafePageController {
     public ModelAndView cafeDetail(ModelAndView mv,
                                    @RequestParam String query,
                                    @RequestParam String index,
-                                   @RequestParam String name){
+                                   @RequestParam String name,
+                                   @RequestParam String mapx,
+                                   @RequestParam String mapy
+    ){
+        //카페 아이디
+        String id = name + mapx + mapy;
 
         Cafe detailCafe = cafeService.cafeResult(query, Integer.parseInt(index));
-        if (!cafeService.findByCafeName(name).isEmpty()){
-            detailCafe = cafeService.findByCafeName(name).get();
+        if (!cafeService.findByCafeId(id).isEmpty()){
+            detailCafe = cafeService.findByCafeId(id).get();
         }
-        List<Review> reviews = reviewService.findAllByCafeName(name);
+        List<Review> reviews = reviewService.findAllByCafeId(id);
         log.info("카페: {}", detailCafe);
         log.info("리뷰: {}", reviews);
         mv.addObject("detailCafe", detailCafe);

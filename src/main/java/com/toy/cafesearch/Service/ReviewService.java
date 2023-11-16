@@ -22,8 +22,8 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final CafeRepository cafeRepository;
 
-    public List<Review> findAllByCafeName(String cafeName){
-        List<Review> reviews = reviewRepository.findAllByCafeName(cafeName);
+    public List<Review> findAllByCafeId(String cafeId){
+        List<Review> reviews = reviewRepository.findAllByCafeId(cafeId);
         return reviews;
     }
 
@@ -34,21 +34,21 @@ public class ReviewService {
 
     @Transactional
     public void saveReview(Review review, Cafe cafe){
-        Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeName());
+        Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeId());
         if(optionalCafe.isEmpty()){
             //첫 리뷰 등록시 카페 데이터도 생성됨
             cafe.setStar(review.getStar());
-            Cafe newCafe = new Cafe(cafe.getCafeName(), cafe.getImage(), cafe.getAddress(), cafe.getStar(), cafe.getMapx(), cafe.getMapy());
+            Cafe newCafe = new Cafe(cafe.getCafeId(), cafe.getCafeName(), cafe.getImage(), cafe.getAddress(), cafe.getStar(), cafe.getMapx(), cafe.getMapy());
             cafeRepository.save(newCafe);
         }else {
             //리뷰 추가 등록시 카페의 평균 별점을 수정함
-            int starSum = findAllByCafeName(review.getCafeName())
+            int starSum = findAllByCafeId(review.getCafeId())
                     .stream()
                     .map(Review::getStar)
                     .collect(reducing(Integer::sum))
                     .get()
                     +review.getStar();
-            int reviewCount = findAllByCafeName(review.getCafeName()).size() + 1;
+            int reviewCount = findAllByCafeId(review.getCafeId()).size() + 1;
             double averageStar = (double) starSum / reviewCount;
             log.info("starSum: {}", starSum);
             log.info("reviewCount: {}", reviewCount);
@@ -64,14 +64,14 @@ public class ReviewService {
         Review review = findByReviewNo(reviewNo).get();
 
         //리뷰 수정시 카페 평균 별점도 수정
-        Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeName());
-        int starSum = findAllByCafeName(review.getCafeName())
+        Optional<Cafe> optionalCafe = cafeRepository.findById(review.getCafeId());
+        int starSum = findAllByCafeId(review.getCafeId())
                 .stream()
                 .map(Review::getStar)
                 .collect(reducing(Integer::sum))
                 .get()
                 - review.getStar() + updateReview.getStar();
-        int reviewCount = findAllByCafeName(review.getCafeName()).size();
+        int reviewCount = findAllByCafeId(review.getCafeId()).size();
         double averageStar = (double) starSum / reviewCount;
         optionalCafe.get().setStar(Math.round(averageStar*100)/100.0);
         cafeRepository.save(optionalCafe.get());
@@ -86,15 +86,15 @@ public class ReviewService {
     public void deleteReview(int reviewNo){
         //리뷰 삭제시 카페 평균 별점도 수정
         Review review = findByReviewNo(reviewNo).get();
-        String reviewCafeName = review.getCafeName();
-        Optional<Cafe> optionalCafe = cafeRepository.findById(reviewCafeName);
-        int starSum = findAllByCafeName(reviewCafeName)
+        String reviewCafeId = review.getCafeId();
+        Optional<Cafe> optionalCafe = cafeRepository.findById(reviewCafeId);
+        int starSum = findAllByCafeId(reviewCafeId)
                 .stream()
                 .map(Review::getStar)
                 .collect(reducing(Integer::sum))
                 .get()
                 - review.getStar();
-        int reviewCount = findAllByCafeName(reviewCafeName).size() - 1;
+        int reviewCount = findAllByCafeId(reviewCafeId).size() - 1;
         double averageStar = (double) starSum / reviewCount;
         optionalCafe.get().setStar(Math.round(averageStar*100)/100.0);
         cafeRepository.save(optionalCafe.get());
@@ -102,8 +102,8 @@ public class ReviewService {
         reviewRepository.deleteById(reviewNo);
 
         //리뷰가 존재하지 않으면 해당 카페 데이터도 삭제
-        if (findAllByCafeName(reviewCafeName).isEmpty()){
-            cafeRepository.deleteById(reviewCafeName);
+        if (findAllByCafeId(reviewCafeId).isEmpty()){
+            cafeRepository.deleteById(reviewCafeId);
         }
     }
 }

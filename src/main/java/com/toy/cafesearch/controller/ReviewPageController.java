@@ -20,9 +20,10 @@ public class ReviewPageController {
     private final ReviewService reviewService;
 
     @GetMapping("/reviewWrite")
-    public ModelAndView reviewWrite(ModelAndView mv, String query, String index, String name){
+    public ModelAndView reviewWrite(ModelAndView mv, String query, String index, String id, String name){
         mv.addObject("query", query);
         mv.addObject("index", index);
+        mv.addObject("cafeId", id);
         mv.addObject("cafeName", name);
         mv.setViewName("reviewWrite");
         return mv;
@@ -33,6 +34,7 @@ public class ReviewPageController {
         mv.addObject("query", query);
         mv.addObject("index", index);
         Review review = reviewService.findByReviewNo(reviewNo).get();
+        mv.addObject("cafeId", review.getCafeId());
         mv.addObject("cafeName", review.getCafeName());
         mv.addObject("review", review);
         mv.setViewName("reviewUpdate");

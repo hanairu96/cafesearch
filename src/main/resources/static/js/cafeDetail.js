@@ -3,8 +3,8 @@ let urlParams = url.searchParams; //URL의 파라미터들
 let query = urlParams.get("query");
 let index = urlParams.get("index");
 
-const reviewPost = (cafeName)=>{
-    location.assign("/cafe/reviewWrite?index="+index+"&query="+query+"&name="+cafeName);
+const reviewPost = (cafeId, cafeName)=>{
+    location.assign("/cafe/reviewWrite?index="+index+"&query="+query+"&id="+cafeId+"&name="+cafeName);
 }
 
 const reviewUpdate = (reviewNo)=>{

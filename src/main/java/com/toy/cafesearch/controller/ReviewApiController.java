@@ -39,16 +39,18 @@ public class ReviewApiController {
     @PostMapping("/")
     public ResponseEntity postReview(@RequestParam(value = "postElements[]") List<String> elements){
         String title = elements.get(0);
-        String cafeName = elements.get(1);
-        int star = Integer.parseInt(elements.get(2));
-        String content = elements.get(3);
-        String query = elements.get(4);
-        int index = Integer.parseInt(elements.get(5));
+        String cafeId = elements.get(1);
+        String cafeName = elements.get(2);
+        int star = Integer.parseInt(elements.get(3));
+        String content = elements.get(4);
+        String query = elements.get(5);
+        int index = Integer.parseInt(elements.get(6));
         Object loginMember = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         LocalDate localDate = LocalDate.now();
 
         Review review = Review.builder()
+                .cafeId(cafeId)
                 .cafeName(cafeName)
                 .memberId(((PrincipalDetails)loginMember).getMember().getMemberId())
                 .memberNickname(((PrincipalDetails)loginMember).getMember().getNickname())
@@ -70,16 +72,18 @@ public class ReviewApiController {
     @PutMapping("/{reviewNo}")
     public ResponseEntity updateReview(@RequestBody List<String> elements, @PathVariable int reviewNo){
         String title = elements.get(0);
-        String cafeName = elements.get(1);
-        int star = Integer.parseInt(elements.get(2));
-        String content = elements.get(3);
-        String query = elements.get(4);
-        int index = Integer.parseInt(elements.get(5));
+        String cafeId = elements.get(1);
+        String cafeName = elements.get(2);
+        int star = Integer.parseInt(elements.get(3));
+        String content = elements.get(4);
+        String query = elements.get(5);
+        int index = Integer.parseInt(elements.get(6));
         Object loginMember = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         LocalDate localDate = LocalDate.now();
 
         Review updateReview = Review.builder()
+                .cafeId(cafeId)
                 .cafeName(cafeName)
                 .memberId(((PrincipalDetails)loginMember).getMember().getMemberId())
                 .memberNickname(((PrincipalDetails)loginMember).getMember().getNickname())

@@ -20,6 +20,8 @@
       <input type="hidden" name="query", th:value="${query}">
       <input type="hidden" name="index", th:value="${cafeStat.index}">
       <input type="hidden" name="name" th:value="${cafe.cafeName}">
+      <input type="hidden" name="mapx" th:value="${cafe.mapx}">
+      <input type="hidden" name="mapy" th:value="${cafe.mapy}">
     </form>
   </div>
   <div class="result-list" th:if="${cafeList.isEmpty}">
