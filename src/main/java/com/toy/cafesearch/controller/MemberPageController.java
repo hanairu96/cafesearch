@@ -61,6 +61,8 @@ public class MemberPageController {
         String encodePassword = passwordEncoder.encode(m.getPassword());
         m.setPassword(encodePassword);
 
+        m.setRole("ROLE_USER");
+
         memberService.saveMember(m);
 
         return "redirect:/cafe/";
