@@ -51,8 +51,9 @@
     width: 100px;
     margin: 35px;
 }
-#member-nickname{
+.member-nickname-id{
     text-align: center;
+    margin: 0px;
 }
 #review-change{
     display: flex;

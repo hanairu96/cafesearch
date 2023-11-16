@@ -31,7 +31,8 @@
       <div class="review" th:each="review: ${reviews}">
         <div id="review-left">
           <img id="profile-img" src="/image/icon-user.png">
-          <p id="member-nickname" th:text="${review.memberNickname}"></p>
+          <p class="member-nickname-id" th:text="${review.memberNickname}"></p>
+          <p class="member-nickname-id" th:text="|(${review.memberId})|"></p>
           <div id="review-change" th:if="${not #strings.isEmpty(loginMember)}">
             <input th:if="${review.memberId==loginMember.memberId}" type="button" value="수정" th:onclick="reviewUpdate([[${review.reviewNo}]]);">
             <input th:if="${review.memberId==loginMember.memberId}" type="button" value="삭제" th:onclick="reviewDelete([[${review.reviewNo}]]);">
