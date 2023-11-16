@@ -29,6 +29,8 @@ public class Review {
     )  //기본키를 자동으로 1씩 증가시킴
     @Column(name = "review_no")
     private int reviewNo;
+    @Column(name = "cafe_id", length = 120)
+    private String cafeId;
     @Column(name = "cafe_name", length = 100)
     private String cafeName;
     @Column(name = "member_id", length = 50)

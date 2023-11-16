@@ -15,6 +15,8 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 public class Cafe {
     @Id
+    @Column(name = "cafe_id", length = 120)
+    private String cafeId;
     @Column(name = "cafe_name", length = 100)
     private String cafeName;
     @Column(length = 1000)
