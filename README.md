@@ -17,7 +17,7 @@
 - 버전 관리: GitHub
 
 ## 3. ERD 설계
-<img src="https://github.com/hanairu96/cafesearch/assets/118409554/8f11054a-3eaa-458f-86b6-46fda276a8f6"/>
+<img src="https://github.com/hanairu96/cafesearch/assets/118409554/b68f154a-97c2-4f77-b977-f2b79bbd59e9"/>
 
 - ERD는 ERDCloud 사이트를 사용했습니다.
 
