@@ -16,12 +16,15 @@
 - 템플릿 엔진: Thymeleaf
 - 버전 관리: GitHub
 
-## 3. ERD 설계
+## 3. 화면
+<img src="https://github.com/hanairu96/cafesearch/assets/118409554/f97bd89a-dd04-4e93-8398-d23cfbb7518d"/>
+
+## 4. ERD 설계
 <img src="https://github.com/hanairu96/cafesearch/assets/118409554/b68f154a-97c2-4f77-b977-f2b79bbd59e9"/>
 
 - ERD는 ERDCloud 사이트를 사용했습니다.
 
-## 4. 구현한 기능
+## 5. 구현한 기능
 - 회원가입
 - 로그인/로그아웃
 - OAuth 소셜 로그인(구글, 네이버, 카카오)
@@ -30,7 +33,7 @@
 - 지도에 카페 위치 표시(네이버 지도 API)
 - 리뷰 작성, 수정, 삭제
 
-## 5. 구현한 기능 설명
+## 6. 구현한 기능 설명
 <details>
   <summary><b>1. Naver API를 통한 지역 검색</b></summary>
 
@@ -59,7 +62,7 @@
 
 </details>
 
-## 6. 트러블 슈팅
+## 7. 트러블 슈팅
 <details>
   <summary><b>1. Spring Security 버전 업으로 인한 변경 문제</b></summary>
 
