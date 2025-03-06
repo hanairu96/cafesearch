@@ -28,7 +28,7 @@
 - 회원가입
 - 로그인/로그아웃
 - OAuth 소셜 로그인(구글, 네이버, 카카오)
-- 스프링 시큐리티 적용
+- Spring Security 적용
 - 카페 검색(네이버 검색 API)
 - 지도에 카페 위치 표시(네이버 지도 API)
 - 리뷰 작성, 수정, 삭제
@@ -124,7 +124,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/main")
             )
-            .logout(withDefaults());;
+            .logout(withDefaults());
         return http.build();
     }
 }
