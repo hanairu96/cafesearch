@@ -6,7 +6,7 @@
 - 기간: 2023.08.28~2023.11.17
 
 ## 2. 개발 환경
-- 언어: Java 17, JavaScript, HTML, CSS, SQL
+- 프로그래밍 언어: Java 17, JavaScript
 - 프레임워크: Spring Boot v3.1.3 (Spring Framework v6.0.11), Spring Security v6.1.3
 - 라이브러리: jQuery 3.6.1, Lombok, Spring Data JPA
 - IDE: IntelliJ IDEA 2022.3.3, SQL Developer 22.2
