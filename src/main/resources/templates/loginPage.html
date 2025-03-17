@@ -19,7 +19,7 @@
           <button type="submit" id="loginBtn" class="customBtn btnStyle">로그인</button>
         </form>
         <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
-          <span id="error-message" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+          <span id="error-message" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION']}"></span>
         </div>
         <a href="/oauth2/authorization/google"><img class="social-login" src="/image/google-login.png"></a><br>
         <a href="/oauth2/authorization/naver"><img class="social-login" src="/image/naver-login.png"></a><br>
